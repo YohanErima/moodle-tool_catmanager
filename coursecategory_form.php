@@ -16,9 +16,8 @@
 /**
  * All course categories forms
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
@@ -30,9 +29,8 @@ require_once('./get.php');
  *
  * upload form
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class upload_form extends moodleform {
@@ -54,9 +52,8 @@ class upload_form extends moodleform {
  *
  * the forms that is print when the upload is a success
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class upload_form_sucess extends moodleform {
@@ -85,9 +82,8 @@ class upload_form_sucess extends moodleform {
  *
  * the forms that is print when users download the csv file
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class upload_form_sucess_return extends moodleform {
@@ -107,9 +103,8 @@ class upload_form_sucess_return extends moodleform {
  *
  * export form
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class export_form extends moodleform {
@@ -128,9 +123,8 @@ class export_form extends moodleform {
  *
  * delete forms
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class delete_form extends moodleform {
@@ -162,9 +156,8 @@ class delete_form extends moodleform {
  *
  * notification of the delete if the admin put 'delete'
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class delete_form_success extends moodleform {
@@ -193,9 +186,8 @@ class delete_form_success extends moodleform {
  *
  * notification of the delete if the admin put another text
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class delete_form_no_success extends moodleform {

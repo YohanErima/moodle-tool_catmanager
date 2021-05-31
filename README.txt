@@ -12,17 +12,17 @@ With this plugin you can manage course categories and categories managers throug
 Features :
     - Accessible graphical user interface
     - Manage course categories and categories managers
-    - Support CRUD (Create/Read/Upload/Delete) Fonctionnalities
+    - Support CRUD (Create/Read/Upload/Delete) Functionnalities
     - Work with CSV files
 
-There are a Documentation of the plugin to learn easely how you can use it.
+There are a Documentation of the plugin to learn easily how you can use it.
 
 
 ==============================
       Installation          
 ==============================
 You can install the plugin by download directly the zip package through the Moodle plugins directory
-or in our GitLab created specialy for the plugin.
+or in our GitLab created specially for the plugin.
 You need to install the plugin through the plugin installation page of your Moodle site with the zip package.
 
 

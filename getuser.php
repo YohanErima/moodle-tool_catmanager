@@ -16,9 +16,8 @@
 /**
  * References all users traitements with two classes
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -29,9 +28,8 @@ defined('MOODLE_INTERNAL') || die;
  * We use this class to clone the user through the database
  *
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user {
@@ -89,9 +87,8 @@ class user {
  *
  * We use this class to help the correspondence of userid and user information
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class getusertab {

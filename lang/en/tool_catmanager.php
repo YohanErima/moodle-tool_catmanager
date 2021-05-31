@@ -18,8 +18,8 @@
  *
  * @package    tool
  * @subpackage catmanager
- * @copyright 2016, University of La Reunion, Person in charge:Didier Sebastien,
- * Developer:Nakidine Houmadi <n.houmadi@rt-iut.re>, Yohan Erima <yohan.erima417@gmail.com>
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

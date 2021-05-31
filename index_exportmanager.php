@@ -16,9 +16,8 @@
 /**
  * The index of the page of managers export
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require('../../../config.php');

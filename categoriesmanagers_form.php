@@ -16,9 +16,8 @@
 /**
  * All categories managers forms
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 // This file reference all managers's forms.
@@ -32,9 +31,8 @@ require_once('./get.php');
  *
  * upload forms with a csv file
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class upload_manager_form extends moodleform {
@@ -56,9 +54,8 @@ class upload_manager_form extends moodleform {
  *
  * the forms that is print when the upload is a success
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class upload_manager_form_sucess extends moodleform {
@@ -89,9 +86,8 @@ class upload_manager_form_sucess extends moodleform {
  *
  * export form
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class export_manager_form extends moodleform {
@@ -111,9 +107,8 @@ class export_manager_form extends moodleform {
  *
  * delete form
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class delete_manager_form extends moodleform {
@@ -145,9 +140,8 @@ class delete_manager_form extends moodleform {
  *
  * notification of the delete if the admin put 'delete'
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class delete_manager_form_success extends moodleform {
@@ -177,9 +171,8 @@ class delete_manager_form_success extends moodleform {
  *
  * notification of the delete if the admin put another text
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class delete_manager_form_no_success extends moodleform {

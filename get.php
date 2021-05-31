@@ -16,9 +16,8 @@
 /**
  * References all categories traitements with two classes
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die;
@@ -28,9 +27,8 @@ defined('MOODLE_INTERNAL') || die;
  *
  * category object to clone a category trough the database
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class categoy {
@@ -169,9 +167,8 @@ class categoy {
  *
  * We can do all categories traitements with this class
  * @package    tool_catmanager
- * @copyright 2021 Yohan Erima <yohan.erima417@gmail.com>
- * @copyright based on work by 2016 Nakidine Houmadi <n.houmadi@rt-iut.re>
- * University of La Reunion, Person in charge : Didier Sebastien <didier.sebastien@univ-reunion.fr>.
+ * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
+ * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class getcatetab {
