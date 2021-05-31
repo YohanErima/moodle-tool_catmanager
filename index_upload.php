@@ -25,7 +25,6 @@ require_once('./get.php');
 require_once($CFG->libdir . '/adminlib.php'); // Moodle file.
 require_once($CFG->dirroot . '/course/lib.php');
 require_once($CFG->libdir . '/filelib.php');
-require_once($CFG->libdir . '/coursecatlib.php');
 require_once('./get.php');
 require_once('coursecategory_form.php'); // Form.
 
@@ -136,7 +135,7 @@ if (empty($idparam)) {
                         $category->parent      = 0;
                         $category->idnumber    = $datatab[$i][0];
                         $category->description = $datatab[$i][3];
-                        $update                = coursecat::get($category->id, MUST_EXIST);
+                        $update                = core_course_category::get($category->id, MUST_EXIST);
                         if (strcmp($update->name, $category->name) + strcmp($update->parent, $category->parent)
                         + strcmp($update->description, $category->description) != 0) { // Check if there are an update.
                             $update->update($category); // Update the category with the new values.
@@ -164,7 +163,7 @@ if (empty($idparam)) {
                         $category->parent      = $idp;
                         $category->idnumber    = $datatab[$i][0];
                         $category->description = $datatab[$i][3];
-                        $update                = coursecat::get($category->id, MUST_EXIST);
+                        $update                = core_course_category::get($category->id, MUST_EXIST);
                         if (strcmp($update->name, $category->name) + strcmp($update->parent, $category->parent)
                         + strcmp($update->description, $category->description) != 0) { // Check if there are an update.
                             $update->update($category);
@@ -192,7 +191,7 @@ if (empty($idparam)) {
                         $category->idnumber    = $datatab[$i][0];
                         $category->description = $datatab[$i][3];
                         if (empty($category->name) == false) {
-                            coursecat::create($category);
+                            core_course_category::create($category);
                             $added .= $category->idnumber . ' ; ' . $category->name . "</br>";
                             $countadded++;
                             array_push($reportadded, array(
@@ -219,7 +218,7 @@ if (empty($idparam)) {
                         $category->idnumber    = $datatab[$i][0];
                         $category->description = $datatab[$i][3];
                         if (empty($category->name) == false) {
-                            coursecat::create($category);
+                            core_course_category::create($category);
                             $added .= $category->idnumber . ' ; ' . $category->name . "</br>";
                             $countadded++;
                             array_push($reportadded, array(

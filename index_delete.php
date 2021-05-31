@@ -26,7 +26,6 @@ require_once($CFG->libdir . '/adminlib.php'); // Moodle file.
 require_once($CFG->dirroot . '/course/lib.php');
 require_once($CFG->libdir . '/filelib.php');
 require_once($CFG->libdir . '/formslib.php');
-require_once($CFG->libdir . '/coursecatlib.php');
 require_once('./get.php');
 require_once('coursecategory_form.php'); // Form.
 global $DB;
@@ -131,7 +130,7 @@ if (empty($idparam)) {
                                 $currentcattab = new getcatetab(); // Current categories tables.
                                 $currentallid  = $currentcattab->getallid(); // Current categories id tables.
                                 if (in_array($id, $currentallid)) { // Check if the category exist to avoid system error.
-                                    $deletecat = coursecat::get($id, MUST_EXIST);
+                                    $deletecat = core_course_category::get($id, MUST_EXIST);
                                     // Make sure that we can delete and the current category is not the last category.
                                     if (($deletecat->can_delete_full()) && ($catetab->counttable() > 1)) {
                                         // Check if we can delete the categories and sons, context(...).
@@ -160,7 +159,7 @@ if (empty($idparam)) {
                                 $currentcattab = new getcatetab();
                                 $currentallid  = $currentcattab->getallid();
                                 if (in_array($id, $currentallid)) {
-                                    $deletecat = coursecat::get($id, MUST_EXIST);
+                                    $deletecat = core_course_category::get($id, MUST_EXIST);
                                     if (($deletecat->can_delete_full()) && ($catetab->counttable() > 1)) {
                                         $deletecat->delete_full(false); // Delete the category and his sons.
                                         $deleted .= $catetab->getidnumberwithid($id) . ' ; '
