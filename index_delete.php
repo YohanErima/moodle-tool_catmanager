@@ -53,11 +53,12 @@ if (empty($idparam)) {
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformdeletesuccess->get_data()) { // The user has clicked in the button of download csv report changes.
         if (isset($formreturn->downloadbutton)) {
-            $csvfile = 'internal_file/reportcsv.csv';
+            $csvfile = sys_get_temp_dir().'/reportcsv.csv';
             if (file_exists($csvfile)) {
                 header('Content-Type: text/csv; charset=utf-8');
                 header('Content-Disposition: attachment; filename="' . basename($csvfile) . '"');
                 readfile($csvfile);
+                unlink($csvfile);
                 die; // Stop the script.
             }
         }
@@ -94,13 +95,14 @@ if (empty($idparam)) {
             $addtionalinfo = '</br><strong>' . $stringtaddtionalinformations . '</strong></br>';
             $reporting     = '';
             // End of report printed.
-            $filename      = 'internal_file/import.csv';
+            $filename      = sys_get_temp_dir().'/import.csv';
             $content       = $aformdelete->get_file_content('coursefile'); // The file that we want to import.
             // Put the content on a internal file to allow easier access on the csv.
+            $fp=fopen($filename,'w');
             file_put_contents($filename, $content);
+            fclose($fp);
             $datatab = array(); // Content of the csv.
             $catetab = new getcatetab(); // All categories.
-            $catetab->createcsv('backupdelete'); // Backup file (for future fonctionnality).
             $allid = $catetab->getallid(); // All categories ids.
             // We recuperates content.
             if (($handle = fopen($filename, "r")) !== false) {
@@ -225,9 +227,12 @@ if (empty($idparam)) {
                 $megastring .= $stringnofile;
             }
             // Erase import file content.
-            file_put_contents('internal_file/import.csv', '');
+            unlink($filename);
+
             // Report changes printed.
-            file_put_contents('internal_file/report.txt', $megastring);
+            $fp =fopen(sys_get_temp_dir().'/report.txt','w');
+            file_put_contents(sys_get_temp_dir().'/report.txt', $megastring);
+            fclose($fp);
             // Report changes that you can download.
             $catetab->createreportcsv($reporttab); // For futur fonctionnality.
             header('location: index_delete.php?str=yes');

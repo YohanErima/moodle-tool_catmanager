@@ -53,11 +53,12 @@ if (empty($idparam)) {
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformuploadsuccess->get_data()) { // The user has clicked in the button of download csv report changes.
         if (isset($formreturn->downloadbutton)) {
-            $csvfile = 'internal_file/reportcsv.csv';
+            $csvfile = sys_get_temp_dir().'/reportcsv.csv';
             if (file_exists($csvfile)) {
                 header('Content-Type: text/csv; charset=utf-8');
                 header('Content-Disposition: attachment; filename="' . basename($csvfile) . '"');
                 readfile($csvfile);
+                unlink($csvfile);
                 die; // Stop the script.
             }
         }
@@ -98,10 +99,12 @@ if (empty($idparam)) {
         $coursecreator       = '</br> <strong>' . $stringnewcoursecreators . '</strong></br>';
         $error               = '</br><strong>' . $stringerror . '</strong></br>';
         $megastring          = '';
-        $filename            = 'internal_file/import.csv';
+        $filename            = sys_get_temp_dir().'/import.csv';
         $content             = $aformupload->get_file_content('coursefile'); // The file to upload managers.
         // Put the content on a internal file to allow easier access on the csv.
+        $fp = fopen($filename, 'w');
         file_put_contents($filename, $content);
+        fclose($fp);
         $datatab       = array(); // Content of the csv.
         $tabcat        = new getcatetab; // All categories.
         $tabuser       = new getusertab(); // All users.

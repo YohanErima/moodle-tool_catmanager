@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die;
 
 if ($hassiteconfig) {
     // Put the plugin functionnality on the "site administration".
-    $ADMIN->add('courses', new admin_category('toolcatmanager_manage', 'catmanager'));
+    $ADMIN->add('courses', new admin_category('toolcatmanager_manage', 'Manage Categories'));
     // Put "Categories->..." and "Managers->..." on the menu.
     $ADMIN->add('toolcatmanager_manage', new admin_category('toolcatmanager_category', 'Categories'));
     $ADMIN->add('toolcatmanager_manage', new admin_category('toolcatmanager_manager', 'Managers'));

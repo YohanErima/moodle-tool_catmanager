@@ -53,11 +53,12 @@ if (empty($idparam)) {
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformuploadsuccess->get_data()) { // The user has clicked in the button of download csv report changes.
         if (isset($formreturn->downloadbutton)) {
-            $csvfile = 'internal_file/reportcsv.csv';
+            $csvfile = sys_get_temp_dir().'/reportcsv.csv';
             if (file_exists($csvfile)) {
                 header('content-type: text/csv; charset=utf-8');
                 header('Content-Disposition: attachment; filename="' . basename($csvfile) . '"');
                 readfile($csvfile);
+                unlink($csvfile);
                 die; // Stop the script.
             }
         }
@@ -74,10 +75,12 @@ if (empty($idparam)) {
     $aformupload = new upload_form(); // Else you begin for process of creating.
     if ($formdata = $aformupload->get_data()) {
         $datatab  = array(); // Contain the content of the csv file.
-        $filename = 'internal_file/import.csv';
+        $filename = sys_get_temp_dir().'/import.csv';
         $content  = $aformupload->get_file_content('coursefile'); // The file to upload categories.
         // Put the content on a internal file to allow easier access on the csv.
+        $fp = fopen($filename, 'w');
         file_put_contents($filename, $content);
+        fclose($fp);
         // Get the content.
         if (($handle = fopen($filename, "r")) !== false) {
             while (($data = fgetcsv($handle, 1000, ";")) !== false) {
@@ -268,9 +271,11 @@ if (empty($idparam)) {
             $megastring .= $stringbadsyntaxcategories;
         }
         // Erase import file content.
-        file_put_contents('internal_file/import.csv', '');
+        unlink($filename);
         // Report changes printed.
-        file_put_contents('internal_file/report.txt', $megastring);
+        $fp=fopen(sys_get_temp_dir().'/report.txt');
+        file_put_contents(sys_get_temp_dir().'/report.txt', $megastring);
+        fclose($fp);
         // Report changes that you can download.
         $catetab->createreportcsv($reporttab); // For futur fonctionnality.
         header('location: index_upload.php?str=yes');

@@ -253,7 +253,7 @@ class getroleassigntab {
      */
     public function createcsv($name) {
         $list = $this->utf8_converter($this->getarray());
-        $fp   = fopen('internal_file/' . $name . '.csv', 'w');
+        $fp   = fopen(sys_get_temp_dir().'/' . $name . '.csv', 'w');
         foreach ($list as $fields) {
             fputcsv($fp, $fields, ";");
         }
@@ -264,15 +264,15 @@ class getroleassigntab {
      * Download the csv file
      */
     public function downloadexportcsv() {
-        $csvfile = 'internal_file/export.csv';
-        if (file_exists($csvfile)) {
-            header('content-type: text/csv; charset=utf-8');
-            header('content-disposition: attachment; filename="' . basename($csvfile) . '"');
-            readfile($csvfile);
-            die;
+        $list = $this->utf8_converter(this->getarray());
+        $out = fopen('php://output','w');
+        foreach($list as $fields){
+            fputcsv($out,$fields,";");
         }
-        // Erase export file content.
-        file_put_contents($csvfile, '');
+        fclose($out);
+
+        header('content-type: text/csv; charset=utf-8');
+        header('content-disposition: attachement; filename=export.csv');
     }
 
     /**
@@ -302,7 +302,7 @@ class getroleassigntab {
      */
     public function createreportcsv($data) {
         $list = $this->utf8_converter($data);
-        $fp   = fopen('internal_file/reportcsv.csv', 'w');
+        $fp   = fopen(sys_get_temp_dir().'/reportcsv.csv', 'w');
         foreach ($list as $fields) {
             fputcsv($fp, $fields, ";");
         }
