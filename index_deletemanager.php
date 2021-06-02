@@ -116,7 +116,6 @@ if (empty($idparam)) {
             $tabcat        = new getcatetab; // All categories.
             $tabuser       = new getusertab(); // All users.
             $tabroleassign = new getroleassigntab(); // All assignments.
-            $tabroleassign->createcsv('backupdeletemanager'); // Backup file (for future fonctionnality).
             // Get the content.
             if (($handle = fopen($filename, "r")) !== false) {
                 while (($data = fgetcsv($handle, 1000, ";")) !== false) {

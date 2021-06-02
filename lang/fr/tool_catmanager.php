@@ -28,30 +28,30 @@ $string['pluginname'] = 'Categories Managers';
 
 
 // Categories.
-$string['uploadeditcoursecategories']      = 'Import/Mordifier les catégories de cours';
+$string['uploadeditcoursecategories']      = 'Import/Modifier les catégories de cours';
 $string['uploadeditcoursecategories_help'] = "
 Les catégories de courses peuvent être ajoutées grâce à un fichier CSV.\n
 Vous devez pour cela suivre cette syntaxe : idNumber;name;parent;description\n
 -idNumber : l'idNumber de la catégories\n
 -name : le nom de la catégories\n
 -parent : le parent de la catégories\n
--description : la description de la catégories(optionnel)";
+-description : la description de la catégories (optionnel)";
 
 $string['uploadedit']             = 'Importer/Modifier';
 $string['uploadcategories']       = 'Importer les catégories ';
-$string['uploadsuccess']          = 'Réussi : Les catégories ont été ajoutées';
+$string['uploadsuccess']          = 'Réussi : les catégories ont été ajoutées.';
 $string['uploadreturntomainpage'] = 'Retour sur la page principale';
 $string['invalidparent']          = 'Identifiant parent invalide';
-$string['treatementstop']         = "Pourriez-vous vérifier l'orde de la liste de vos catégories dans le fichier csv ? Le trétement du fichier csv à été arrêter pour éviter tout problème de structuration";
+$string['treatementstop']         = "Pourriez-vous vérifier l'ordre de la liste de vos catégories dans le fichier CSV ? Le traitement du fichier CSV a été arrêté pour éviter tout problème de structuration";
 $string['categoriesadded']        = 'Catégories ajoutées :';
 $string['categoriesmodified']     = 'Catégories modifiées :';
 $string['namerequired']           = 'Nom de catégorie requis';
 
 
 $string['exportcoursecategories']      = 'Exporter des catégories de cours';
-$string['exportcoursecategories_help'] = "Vous pouvez sauvegarder toutes les catégories de cours moodle dans un fichier csv pour le réutiliser sur un autre serveur moodle";
+$string['exportcoursecategories_help'] = "Vous pouvez sauvegarder toutes les catégories de cours Moodle dans un fichier CSV pour le réutiliser sur un autre serveur Moodle.";
 $string['export']                      = 'Exporter';
-$string['exportcsv']                   = 'Exporter  fichier CSV les categories de cours';
+$string['exportcsv']                   = 'Exporter un fichier CSV avec les categories de cours';
 
 $string['deletecoursecategories']      = 'Supprimer des categories de cours';
 $string['deletecoursecategories_help'] = "
@@ -68,15 +68,15 @@ $string['deletecategories']        = 'Supprimer des categories';
 $string['categoriesdeleted']       = 'Categories supprimées :';
 $string['leaveonecategory']        = "
 Ceci est la dernière catégories\n
-Vous ne pouvez pas supprimer toute les catégories avec ce programme parce que cela est dangereux pour le système, vous devez laissez au moins une catégories.\n
-Vous pouvez supprimer la dernière cartégories manuellement, Moodle créera une catégorie par défaut 'Miscellabeous' pour éviter toute erreur. ";
-$string['reallyconfirmcategories'] = 'Attention : si une catégorie possède des cours,tout les cours seront suprimés! Voulez-vous vraiment suprimer ?';
-$string['defaultcategory']         = 'Ce plugin ne peut pas supprimer la catégorie par défaut pour éviter les erreurs système, vous pouvez le supprimer manuellement';
+Vous ne pouvez pas supprimer toutes les catégories avec ce programme parce que cela est dangereux pour le système, vous devez laisser au moins une catégorie.\n
+Vous pouvez supprimer la dernière catégorie manuellement, Moodle créera une catégorie par défaut 'Miscellabeous' pour éviter toute erreur. ";
+$string['reallyconfirmcategories'] = 'Attention : si une catégorie possède des cours, tout les cours seront supprimés ! Voulez-vous vraiment supprimer ?';
+$string['defaultcategory']         = 'Ce plugin ne peut pas supprimer la catégorie par défaut pour éviter les erreurs système, vous pouvez le supprimer manuellement ?';
 
 // Categories.
-$string['added']    = 'Ajouté :';
-$string['modified'] = 'Modifié :';
-$string['deleted']  = 'Supprimé :';
+$string['added']    = 'Ajoutée(s) :';
+$string['modified'] = 'Modifiée(s) :';
+$string['deleted']  = 'Supprimée(s) :';
 
 // Categories Manager.
 $string['uploadeditmanager']      = 'Importer/Modifier des managers de catégorie';
@@ -84,13 +84,13 @@ $string['uploadeditmanager_help'] = "
 Les managers de catégories peuvent être ajoutés grâce à un fichier CSV\n
 Vous devez suivre la syntaxe suivante: idNumber;userName;role\n
 -idNumber: l'idNumber de la catégorie\n
--userName : le nom de l'utiliszteur \n
--role : le rôle à attribué a l'utilisateur ";
+-userName : le nom de l'utilisateur \n
+-role : le rôle à attribué à l'utilisateur ";
 
 
 $string['uploadeditmanagerhead']         = 'Importer/Modifier';
-$string['uploadmanager']                 = 'Importer des manager de catégorie';
-$string['uploadmanagersuccess']          = 'Réussi: les managers ont été importés avec succès';
+$string['uploadmanager']                 = 'Importer des managers de catégorie';
+$string['uploadmanagersuccess']          = 'Réussi : les managers ont été importés avec succès';
 $string['uploadmanagerreturntomainpage'] = 'Retour sur la page principale';
 $string['idNumber']                      = 'Le idNumber';
 $string['doesnotexist']                  = "n'existe pas";
@@ -98,9 +98,9 @@ $string['line']                          = 'ligne';
 
 
 $string['exportmanager']      = 'Exporter les managers de catégories';
-$string['exportmanager_help'] = 'Vous pouvez sauvegarder toutes les managers de catégorie moodle dans un fichier csv pour le réuutiliser sur un autre serveur moodle';
+$string['exportmanager_help'] = 'Vous pouvez sauvegarder toutes les managers de catégorie Moodle dans un fichier CSV pour le réutiliser sur un autre serveur Moodle';
 $string['exportmanagerhead']  = 'Exporter';
-$string['exportmanagercsv']   = 'Exporter un fichier CSV avec managers de catégories';
+$string['exportmanagerCSV']   = 'Exporter un fichier CSV avec managers de catégories';
 
 
 $string['deletemanager']         = 'Supprimer des managers de catégories';
@@ -108,7 +108,7 @@ $string['deletemanager_help']    = "
 Les managers de catégories peuvent être supprimés grâce à un fichier CSV\n
 Vous devez suivre la syntaxe suivante: idNumber;userName;role\n
 -idNumber: l'idNumber de la catégorie\n
--userName : le nom de l'utiliszteur \n
+-userName : le nom de l'utilisateur \n
 -role : le rôle à attribué a l'utilisateur ";
 
 $string['deletemanagerhead']     = 'Supprimer';
@@ -122,9 +122,9 @@ $string['newcoursecreators']     = 'Nouveaux créateurs de cours :';
 $string['oldmanagers']           = 'anciens managers:';
 $string['oldcoursecreators']     = 'Anciens créateurs de cours :';
 $string['managersadded']         = 'Managers ajoutés :';
-$string['coursecreatorsadded']   = 'Créateurs de cours ajoutés:';
+$string['coursecreatorsadded']   = 'Créateurs de cours ajoutés :';
 $string['managersdeleted']       = 'Managers supprimés :';
-$string['coursecreatorsdeleted'] = 'Créateurs de cours supprimés:';
+$string['coursecreatorsdeleted'] = 'Créateurs de cours supprimés :';
 
 
 
@@ -132,12 +132,12 @@ $string['coursecreatorsdeleted'] = 'Créateurs de cours supprimés:';
 $string['writedelete']               = 'Veuillez écrire "DELETE" pour confirmer :';
 $string['incorrecttext']             = 'Vous avez entré un texte incorrect';
 $string['addtionalinformations']     = 'Informations additionnels (catégorie sans idNumber) :';
-$string['recallidnumberemptycreate'] = "Pour la modification,ce plugin ne fonctionne pas avec les catégories sans idNumber pour éviter les collisions puisque le idNumber est ce qui permet d'identifier une catégorie.Si une catégorie n'a pas de idNumber,une nouvelle catégorie sera créée avec les parametres définis.";
-$string['recallidnumberemptydelete'] = "Pour la suppression,ce plugin ne fonctionne pas avec les catégories sans idNumber pour éviter les collisions  le idNumber est ce qui permet d'identifier une catégorie. si une catégorie n'a pas de idNumber, you should delete it with the intern interface of Moodle.";
+$string['recallidnumberemptycreate'] = "Pour la modification, ce plugin ne fonctionne pas avec les catégories sans idNumber pour éviter les collisions puisque le idNumber est ce qui permet d'identifier une catégorie. Si une catégorie n'a pas d'idNumber, une nouvelle catégorie sera créée avec les paramètres définis.";
+$string['recallidnumberemptydelete'] = "Pour la suppression,ce plugin ne fonctionne pas avec les catégories sans idNumber pour éviter les collisions  le idNumber est ce qui permet d'identifier une catégorie. Si une catégorie n'a pas d'idNumber, vous devriez le supprimer avec l'interface de Moodle.";
 $string['exist']                     = 'existe';
-$string['nochanges']                 = 'Aucun changement fait dans la base de données. Peut-être que votre fichier soit vide ou les changements on déjà étaient faits.';
+$string['nochanges']                 = 'Aucun changement fait dans la base de données. Peut-être que votre fichier soit vide ou les changements ont déjà été faits.';
 $string['nofile']                    = 'Veuillez insérer un fichier';
-$string['reportchanges']             = 'Rapport des chanhements';
+$string['reportchanges']             = 'Rapport des changements';
 
 $string['badsyntaxcategories'] = "
 Vous avez une mauvaise syntaxe.\n
@@ -145,7 +145,7 @@ Vous devez suivre la syntaxe suivante : idNumber;name;parent;description\n
 -idNumber : l'idNumber de la categorie\n
 -name : le nom de la categorie\n
 -parent : le parent de la categorie\n
--description : la description de la catagore(optionel);
+-description : la description de la catagore(optionnel);
 
 ";
 
@@ -161,5 +161,5 @@ $string['reportingcreated']  = 'un fichier de rapport a été créé';
 $string['downloadreporting'] = 'Télécharger le fichier de rapport';
 $string['leaveonecategory']  = "
 Ceci est la dernière catégorie\n
-Vous ne pouvez pas supprimer toutes les catégories avec ce programme puisque cela est dangereux pour le système, vous devez laisser aumoins une catégorie.\n
-Vous pouvez le supprimer manuellement si vous devez vraiment supprimer toutes les catégories, Moodle créera une catégories par défaut'Miscellaneous' pouréviter toute erreur système.";
+Vous ne pouvez pas supprimer toutes les catégories avec ce programme puisque cela est dangereux pour le système, vous devez laisser au moins une catégorie.\n
+Vous pouvez le supprimer manuellement si vous devez vraiment supprimer toutes les catégories, Moodle créera une catégorie par défaut 'Miscellaneous' pour éviter toute erreur système.";
