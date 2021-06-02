@@ -96,7 +96,6 @@ class upload_form_sucess_return extends moodleform {
         $mform = $this->_form;
         $mform->addelement('header', 'uploadheader', get_string('reportchanges', 'tool_catmanager')); // Add title.
         $this->add_action_buttons(false, get_string('uploadreturntomainpage', 'tool_catmanager'));
-        $csvfile = sys_get_temp_dir().'/reportcsv.csv';
         
         // Button to validate the file.
     }
