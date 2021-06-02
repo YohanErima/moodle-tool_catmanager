@@ -72,13 +72,16 @@ if (empty($idparam)) {
         die;
     }
     // Upload.
+    if(file_exists(sys_get_temp_dir().'/reportcsv.csv')){
+        unlink(sys_get_temp_dir().'/reportcsv.csv');
+    }
     $aformupload = new upload_form(); // Else you begin for process of creating.
     if ($formdata = $aformupload->get_data()) {
         $datatab  = array(); // Contain the content of the csv file.
         $filename = sys_get_temp_dir().'/import.csv';
         $content  = $aformupload->get_file_content('coursefile'); // The file to upload categories.
         // Put the content on a internal file to allow easier access on the csv.
-        $fp = fopen($filename, 'w');
+        $fp = fopen($filename,'w');
         file_put_contents($filename, $content);
         fclose($fp);
         // Get the content.
@@ -271,9 +274,9 @@ if (empty($idparam)) {
             $megastring .= $stringbadsyntaxcategories;
         }
         // Erase import file content.
-        unlink($filename);
+        unlink(sys_get_temp_dir().'/import.csv');
         // Report changes printed.
-        $fp=fopen(sys_get_temp_dir().'/report.txt');
+        $fp = fopen(sys_get_temp_dir().'/report.txt','w');
         file_put_contents(sys_get_temp_dir().'/report.txt', $megastring);
         fclose($fp);
         // Report changes that you can download.

@@ -400,18 +400,23 @@ class getcatetab {
     }
 
     /**
-     * Download the csv file ( for export)
+     *  Create and download the csv file ( for export)
      */
-    public function downloadexportcsv() {
-        $list = $this->utf8_converter(this->getarray());
-        $out = fopen('php://output','w');
-        foreach($list as $fields){
-            fputcsv($out,$fields,";");
-        }
-        fclose($out);
+    public function downloadexportcsv(){
 
+        $list = $this->utf8_converter($this->getarray());
+        $out = fopen('php://output', 'w');
+        
+        foreach ($list as $fields) {
+            fputcsv($out, $fields, ";");
+        }
+
+        fclose($out);
+        
         header('content-type: text/csv; charset=utf-8');
-        header('content-disposition: attachement; filename=export.csv');
+        header('content-disposition: attachment; filename=export2.csv');
+
+
     }
 
     /**
@@ -502,28 +507,31 @@ class getcatetab {
      * @param array $data
      */
     public function createreportcsv($data) {
-        $list = $this->utf8_converter($data);
-        $fp   = fopen(sys_get_temp_dir().'/reportcsv.csv', 'w');
-        foreach ($list as $fields) {
+        $list=$this->utf8_converter($data);
+        $fp= fopen(sys_get_temp_dir().'/reportcsv.csv','w');
+        foreach($list as $fields){
             fputcsv($fp, $fields, ";");
         }
         fclose($fp);
     }
 
-
-
     /**
      * Download csv report changes
      */
     public function downloadreportcsv() {
-        $csvfile = sys_get_temp_dir().'/reportcsv.csv';
+        $csvfile = sys_get_temp_dir()."/reportcsv.csv";
         if (file_exists($csvfile)) {
             header('content-type: text/csv; charset=utf-8');
             header('content-disposition: attachment; filename="' . basename($csvfile) . '"');
             readfile($csvfile);
             die;
         }
+        unlink($csvfile);
     }
+
+    
+
+    
 
     /**
      * Number of elements in the tables

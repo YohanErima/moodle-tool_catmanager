@@ -36,7 +36,6 @@ if (empty($id)) {
     $aformexport = new export_manager_form(); // Instance of form.
     if ($formdata = $aformexport->get_data()) {
         $roleassigntable = new getroleassigntab(); // Create role assign table.
-        $roleassigntable->createcsv('export'); // Create the csv file.
         $roleassigntable->downloadexportcsv(); // Download the csv file.
     } else {
         echo $OUTPUT->header();

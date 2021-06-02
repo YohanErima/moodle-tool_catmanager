@@ -37,8 +37,7 @@ if (empty($idparam)) {
     $aformexport = new export_form(); // Form instance.
     if ($formdata = $aformexport->get_data()) {
         $categorietable = new getcatetab(); // Create object that contains all categories.
-        $categorietable->createcsv('export'); // Create the csv file.
-        $categorietable->downloadexportcsv(); // Download the csv file.
+        $categorietable->downloadexportcsv();
     } else {
         echo $OUTPUT->header();
         echo $OUTPUT->heading_with_help(get_string('exportcoursecategories', 'tool_catmanager'),

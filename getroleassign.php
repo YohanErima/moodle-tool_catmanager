@@ -261,18 +261,23 @@ class getroleassigntab {
     }
 
     /**
-     * Download the csv file
+     *  Create and download the csv file ( for export)
      */
     public function downloadexportcsv() {
-        $list = $this->utf8_converter(this->getarray());
-        $out = fopen('php://output','w');
-        foreach($list as $fields){
-            fputcsv($out,$fields,";");
-        }
-        fclose($out);
 
+        $list = $this->utf8_converter($this->getarray());
+        $out = fopen('php://output', 'w');
+        
+        foreach ($list as $fields) {
+            fputcsv($out, $fields, ";");
+        }
+
+        fclose($out);
+        
         header('content-type: text/csv; charset=utf-8');
-        header('content-disposition: attachement; filename=export.csv');
+        header('content-disposition: attachment; filename=export2.csv');
+
+
     }
 
     /**

@@ -55,7 +55,7 @@ if (empty($idparam)) {
         if (isset($formreturn->downloadbutton)) {
             $csvfile = sys_get_temp_dir().'/reportcsv.csv';
             if (file_exists($csvfile)) {
-                header('Content-Type: text/csv; charset=utf-8');
+                header('content-type: text/csv; charset=utf-8');
                 header('Content-Disposition: attachment; filename="' . basename($csvfile) . '"');
                 readfile($csvfile);
                 unlink($csvfile);
@@ -71,6 +71,11 @@ if (empty($idparam)) {
         echo $OUTPUT->footer();
         die;
     }
+
+    if(file_exists(sys_get_temp_dir().'/reportcsv.csv')){
+        unlink(sys_get_temp_dir().'/reportcsv.csv');
+    }
+    
     // Upload.
     $aformupload = new upload_manager_form(); // Form instance.
     if ($formdata = $aformupload->get_data()) {
@@ -99,10 +104,10 @@ if (empty($idparam)) {
         $coursecreator       = '</br> <strong>' . $stringnewcoursecreators . '</strong></br>';
         $error               = '</br><strong>' . $stringerror . '</strong></br>';
         $megastring          = '';
-        $filename            = sys_get_temp_dir().'/import.csv';
+        $filename = sys_get_temp_dir().'/import.csv';
         $content             = $aformupload->get_file_content('coursefile'); // The file to upload managers.
         // Put the content on a internal file to allow easier access on the csv.
-        $fp = fopen($filename, 'w');
+        $fp = fopen($filename,'w');
         file_put_contents($filename, $content);
         fclose($fp);
         $datatab       = array(); // Content of the csv.
@@ -220,9 +225,11 @@ if (empty($idparam)) {
             $megastring .= $stringbadsyntaxmanager;
         }
         // Erase import file content.
-        file_put_contents('internal_file/import.csv', '');
+        unlink(sys_get_temp_dir().'/import.csv');
         // Report changes file.
-        file_put_contents('internal_file/report.txt', $megastring);
+        $fp = fopen(sys_get_temp_dir().'/report.txt','w');
+        file_put_contents(sys_get_temp_dir().'/report.txt', $megastring);
+        fclose($fp);
         // Report changes that you can download.
         $tabroleassign->createreportcsv($reporttab); // For futur fonctionnality.
         header('location: index_uploadmanager.php?str=yes');

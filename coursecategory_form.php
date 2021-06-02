@@ -63,14 +63,16 @@ class upload_form_sucess extends moodleform {
     public function definition() {
         $mform = $this->_form;
         $mform->addelement('header', 'uploadheader', get_string('reportchanges', 'tool_catmanager')); // Add title.
-        if (filesize("internal_file/report.txt") > 1) { // The report file is >1 if the user upload a file.
+        $filename = sys_get_temp_dir().'/report.txt';
+        if (filesize($filename) > 1) { // The report file is >1 if the user upload a file.
             // ------Print the content of the notification file------.
-            $fp     = fopen('internal_file/report.txt', 'r');
-            $return = fread($fp, filesize("internal_file/report.txt"));
+            $fp     = fopen($filename, 'r');
+            $return = fread($fp, filesize($filename));
             fclose($fp);
-            file_put_contents('internal_file/report.txt', '');
+            
             $mform->addelement('html', $return); // Print the report form a file through html.
         }
+        unlink($filename);
         $mform->addelement('submit', 'downloadbutton', get_string('downloadreporting', 'tool_catmanager'));
         // Button to validate the file.
         $this->add_action_buttons(false, get_string('uploadreturntomainpage', 'tool_catmanager'));
@@ -94,6 +96,8 @@ class upload_form_sucess_return extends moodleform {
         $mform = $this->_form;
         $mform->addelement('header', 'uploadheader', get_string('reportchanges', 'tool_catmanager')); // Add title.
         $this->add_action_buttons(false, get_string('uploadreturntomainpage', 'tool_catmanager'));
+        $csvfile = sys_get_temp_dir().'/reportcsv.csv';
+        
         // Button to validate the file.
     }
 }
@@ -167,14 +171,15 @@ class delete_form_success extends moodleform {
     public function definition() {
         $mform = $this->_form;
         $mform->addelement('header', 'deleteheader', get_string('reportchanges', 'tool_catmanager'));
-        if (filesize("internal_file/report.txt") > 1) { // The report file is >1 if the user upload a file.
+        $filename = sys_get_temp_dir().'/report.txt';
+        if (filesize($filename) > 1) { // The report file is >1 if the user upload a file.
             // Print the content of the notification file.
-            $fp     = fopen('internal_file/report.txt', 'r');
-            $return = fread($fp, filesize("internal_file/report.txt"));
+            $fp     = fopen($filename, 'r');
+            $return = fread($fp, filesize($filename));
             fclose($fp);
-            file_put_contents('internal_file/report.txt', '');
             $mform->addelement('html', $return); // Print the report form a file through html.
         }
+        unlink($filename);
         $mform->addelement('submit', 'downloadbutton', get_string('downloadreporting', 'tool_catmanager'));
         $this->add_action_buttons(false, get_string('uploadreturntomainpage', 'tool_catmanager'));
         // Button to validate the file.

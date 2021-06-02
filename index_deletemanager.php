@@ -71,6 +71,11 @@ if (empty($idparam)) {
         echo $OUTPUT->footer();
         die;
     }
+
+    if(file_exists(sys_get_temp_dir().'/reportcsv.csv')){
+        unlink(sys_get_temp_dir().'/reportcsv.csv');
+    }
+    
     $aformdelete = new delete_manager_form(); // Instance of form.
     if ($formdata = $aformdelete->get_data()) {
         if (strcmp($formdata->deletetext, 'DELETE') == 0) {
@@ -101,16 +106,17 @@ if (empty($idparam)) {
             $error               = '</br><strong>' . $stringerror . '</strong></br>';
             $megastring          = '';
             // End of report printed.
-            $filename      = sys_get_temp_dir().'/import.csv';
+            $filename            = sys_get_temp_dir().'/import.csv';
             $content             = $aformdelete->get_file_content('coursefile'); // The file to delete managers.
             // Put the content on a internal file to allow easier access on the csv.
-            $fp=fopen($filename,'w');
+            $fp = fopen($filename,'w');
             file_put_contents($filename, $content);
             fclose($fp);
             $datatab       = array(); // Content of the csv.
             $tabcat        = new getcatetab; // All categories.
             $tabuser       = new getusertab(); // All users.
             $tabroleassign = new getroleassigntab(); // All assignments.
+            $tabroleassign->createcsv('backupdeletemanager'); // Backup file (for future fonctionnality).
             // Get the content.
             if (($handle = fopen($filename, "r")) !== false) {
                 while (($data = fgetcsv($handle, 1000, ";")) !== false) {
@@ -223,7 +229,7 @@ if (empty($idparam)) {
             // Erase import file content.
             unlink($filename);
             // Put the report change into a file.
-            $fp= fopen(sys_get_temp_dir().'/report.txt');
+            $fp = fopen(sys_get_temp_dir().'/report.txt','w');
             file_put_contents(sys_get_temp_dir().'/report.txt', $megastring);
             fclose($fp);
             // Report changes that you can download.
