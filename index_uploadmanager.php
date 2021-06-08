@@ -72,8 +72,14 @@ if (empty($idparam)) {
         die;
     }
 
+    // delete file if the user don't choose to download the file.
     if(file_exists(sys_get_temp_dir().'/reportcsv.csv')){
         unlink(sys_get_temp_dir().'/reportcsv.csv');
+    }
+
+    // Delete the file if we have a upload error. 
+    if(file_exists(sys_get_temp_dir().'/report.txt')){
+        unlink(sys_get_temp_dir().'/report.txt');
     }
     
     // Upload.

@@ -414,9 +414,7 @@ class getcatetab {
         fclose($out);
         
         header('content-type: text/csv; charset=utf-8');
-        header('content-disposition: attachment; filename=export2.csv');
-
-
+        header('content-disposition: attachment; filename=export.csv');
     }
 
     /**

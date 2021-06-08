@@ -71,10 +71,18 @@ if (empty($idparam)) {
         echo $OUTPUT->footer(); // Footer.
         die;
     }
-    // Upload.
+
+    // need to delete file if user don't choose to download the file
     if(file_exists(sys_get_temp_dir().'/reportcsv.csv')){
         unlink(sys_get_temp_dir().'/reportcsv.csv');
     }
+
+    // delete the file if we have a upload error 
+    if(file_exists(sys_get_temp_dir().'/report.txt')){
+        unlink(sys_get_temp_dir().'/report.txt');
+    }
+    // Upload.
+   
     $aformupload = new upload_form(); // Else you begin for process of creating.
     if ($formdata = $aformupload->get_data()) {
         $datatab  = array(); // Contain the content of the csv file.
