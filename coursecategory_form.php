@@ -69,7 +69,7 @@ class upload_form_sucess extends moodleform {
             $fp     = fopen($filename, 'r');
             $return = fread($fp, filesize($filename));
             fclose($fp);
-            
+
             $mform->addelement('html', $return); // Print the report form a file through html.
         }
         unlink($filename);
@@ -96,7 +96,7 @@ class upload_form_sucess_return extends moodleform {
         $mform = $this->_form;
         $mform->addelement('header', 'uploadheader', get_string('reportchanges', 'tool_catmanager')); // Add title.
         $this->add_action_buttons(false, get_string('uploadreturntomainpage', 'tool_catmanager'));
-        
+
         // Button to validate the file.
     }
 }

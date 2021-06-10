@@ -72,17 +72,16 @@ if (empty($idparam)) {
         die;
     }
 
-    // need to delete file if user don't choose to download the file
-    if(file_exists(sys_get_temp_dir().'/reportcsv.csv')){
+    // Need to delete file if user don't choose to download the file.
+    if (file_exists(sys_get_temp_dir().'/reportcsv.csv')) {
         unlink(sys_get_temp_dir().'/reportcsv.csv');
     }
 
-    // delete the file if we have a upload error 
-    if(file_exists(sys_get_temp_dir().'/report.txt')){
+    // Delete the file if we have a upload error.
+    if ((sys_get_temp_dir().'/report.txt')) {
         unlink(sys_get_temp_dir().'/report.txt');
     }
 
-    
     $aformdelete = new delete_form(); // Form instance.
     if ($formdata = $aformdelete->get_data()) {
         if (strcmp($formdata->deletetext, 'DELETE') == 0) {
@@ -110,12 +109,11 @@ if (empty($idparam)) {
             $filename = sys_get_temp_dir().'/import.csv';
             $content       = $aformdelete->get_file_content('coursefile'); // The file that we want to import.
             // Put the content on a internal file to allow easier access on the csv.
-            $fp = fopen($filename,'w');
+            $fp = fopen($filename, 'w');
             file_put_contents($filename, $content);
             fclose($fp);
             $datatab = array(); // Content of the csv.
             $catetab = new getcatetab(); // All categories.
-            //$catetab->createcsv('backupdelete'); // Backup file (for future fonctionnality).
             $allid = $catetab->getallid(); // All categories ids.
             // We recuperates content.
             if (($handle = fopen($filename, "r")) !== false) {
@@ -242,7 +240,7 @@ if (empty($idparam)) {
             // Erase import file content.
             unlink($filename);
             // Report changes printed.
-            $fp = fopen(sys_get_temp_dir().'/report.txt','w');
+            $fp = fopen(sys_get_temp_dir().'/report.txt', 'w');
             file_put_contents(sys_get_temp_dir().'/report.txt', $megastring);
             fclose($fp);
             // Report changes that you can download.

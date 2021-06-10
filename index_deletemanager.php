@@ -72,16 +72,16 @@ if (empty($idparam)) {
         die;
     }
 
-    // need to delete file if user don't choose to download the file
-    if(file_exists(sys_get_temp_dir().'/reportcsv.csv')){
+    // Need to delete file if user don't choose to download the file.
+    if (file_exists(sys_get_temp_dir().'/reportcsv.csv')) {
         unlink(sys_get_temp_dir().'/reportcsv.csv');
     }
 
-    // delete the file if we have a upload error 
-    if(file_exists(sys_get_temp_dir().'/report.txt')){
+    // Delete the file if we have a upload error.
+    if (file_exists(sys_get_temp_dir().'/report.txt')) {
         unlink(sys_get_temp_dir().'/report.txt');
     }
-    
+
     $aformdelete = new delete_manager_form(); // Instance of form.
     if ($formdata = $aformdelete->get_data()) {
         if (strcmp($formdata->deletetext, 'DELETE') == 0) {
@@ -115,7 +115,7 @@ if (empty($idparam)) {
             $filename            = sys_get_temp_dir().'/import.csv';
             $content             = $aformdelete->get_file_content('coursefile'); // The file to delete managers.
             // Put the content on a internal file to allow easier access on the csv.
-            $fp = fopen($filename,'w');
+            $fp = fopen($filename, 'w');
             file_put_contents($filename, $content);
             fclose($fp);
             $datatab       = array(); // Content of the csv.
@@ -234,7 +234,7 @@ if (empty($idparam)) {
             // Erase import file content.
             unlink($filename);
             // Put the report change into a file.
-            $fp = fopen(sys_get_temp_dir().'/report.txt','w');
+            $fp = fopen(sys_get_temp_dir().'/report.txt', 'w');
             file_put_contents(sys_get_temp_dir().'/report.txt', $megastring);
             fclose($fp);
             // Report changes that you can download.

@@ -402,17 +402,17 @@ class getcatetab {
     /**
      *  Create and download the csv file ( for export)
      */
-    public function downloadexportcsv(){
+    public function downloadexportcsv() {
 
         $list = $this->utf8_converter($this->getarray());
         $out = fopen('php://output', 'w');
-        
+
         foreach ($list as $fields) {
             fputcsv($out, $fields, ";");
         }
 
         fclose($out);
-        
+
         header('content-type: text/csv; charset=utf-8');
         header('content-disposition: attachment; filename=export.csv');
     }
@@ -505,9 +505,9 @@ class getcatetab {
      * @param array $data
      */
     public function createreportcsv($data) {
-        $list=$this->utf8_converter($data);
-        $fp= fopen(sys_get_temp_dir().'/reportcsv.csv','w');
-        foreach($list as $fields){
+        $list = $this->utf8_converter($data);
+        $fp = fopen(sys_get_temp_dir().'/reportcsv.csv','w');
+        foreach ($list as $fields) {
             fputcsv($fp, $fields, ";");
         }
         fclose($fp);
@@ -527,9 +527,9 @@ class getcatetab {
         unlink($csvfile);
     }
 
-    
 
-    
+
+
 
     /**
      * Number of elements in the tables
