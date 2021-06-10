@@ -387,7 +387,7 @@ class getcatetab {
     }
 
     /**
-     * Create the csv file ( for export)
+     * Create the csv file
      * @param string $name
      */
     public function createcsv($name) {

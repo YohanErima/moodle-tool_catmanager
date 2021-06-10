@@ -28,7 +28,7 @@ $string['pluginname'] = 'Categories Managers';
 
 
 // Categories.
-$string['uploadeditcoursecategories']      = 'Import/Modifier les catégories de cours';
+$string['uploadeditcoursecategories']      = 'Ajouter/Modifier les catégories de cours';
 $string['uploadeditcoursecategories_help'] = "
 Les catégories de courses peuvent être ajoutées grâce à un fichier CSV.\n
 Vous devez pour cela suivre cette syntaxe : idNumber;name;parent;description\n
@@ -37,8 +37,8 @@ Vous devez pour cela suivre cette syntaxe : idNumber;name;parent;description\n
 -parent : le parent de la catégories\n
 -description : la description de la catégories (optionnel)";
 
-$string['uploadedit']             = 'Importer/Modifier';
-$string['uploadcategories']       = 'Importer les catégories ';
+$string['uploadedit']             = 'Ajouter/Modifier';
+$string['uploadcategories']       = 'Ajouter les catégories ';
 $string['uploadsuccess']          = 'Réussi : les catégories ont été ajoutées.';
 $string['uploadreturntomainpage'] = 'Retour sur la page principale';
 $string['invalidparent']          = 'Identifiant parent invalide';
@@ -79,7 +79,7 @@ $string['modified'] = 'Modifiée(s) :';
 $string['deleted']  = 'Supprimée(s) :';
 
 // Categories Manager.
-$string['uploadeditmanager']      = 'Importer/Modifier des managers de catégorie';
+$string['uploadeditmanager']      = 'Ajouter/Modifier des managers de catégorie';
 $string['uploadeditmanager_help'] = "
 Les managers de catégories peuvent être ajoutés grâce à un fichier CSV\n
 Vous devez suivre la syntaxe suivante: idNumber;userName;role\n
@@ -88,8 +88,8 @@ Vous devez suivre la syntaxe suivante: idNumber;userName;role\n
 -role : le rôle à attribué à l'utilisateur ";
 
 
-$string['uploadeditmanagerhead']         = 'Importer/Modifier';
-$string['uploadmanager']                 = 'Importer des managers de catégorie';
+$string['uploadeditmanagerhead']         = 'Ajouter/Modifier';
+$string['uploadmanager']                 = 'Ajouter des managers de catégorie';
 $string['uploadmanagersuccess']          = 'Réussi : les managers ont été importés avec succès';
 $string['uploadmanagerreturntomainpage'] = 'Retour sur la page principale';
 $string['idNumber']                      = 'Le idNumber';
