@@ -506,7 +506,7 @@ class getcatetab {
      */
     public function createreportcsv($data) {
         $list = $this->utf8_converter($data);
-        $fp = fopen(sys_get_temp_dir().'/reportcsv.csv','w');
+        $fp = fopen(sys_get_temp_dir().'/reportcsv.csv', 'w');
         foreach ($list as $fields) {
             fputcsv($fp, $fields, ";");
         }

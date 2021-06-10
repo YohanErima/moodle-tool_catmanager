@@ -77,7 +77,7 @@ if (empty($idparam)) {
         unlink(sys_get_temp_dir().'/reportcsv.csv');
     }
 
-    // Delete the file if we have a upload error. 
+    // Delete the file if we have a upload error.
     if (file_exists(sys_get_temp_dir().'/report.txt')) {
         unlink(sys_get_temp_dir().'/report.txt');
     }
