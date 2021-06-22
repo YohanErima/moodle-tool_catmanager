@@ -34,6 +34,7 @@ admin_externalpage_setup('toolcatmanager_export'); // The admin page.
 require_capability('moodle/category:manage', context_system::instance()); // Manager role.
 
 if (empty($idparam)) {
+    require_sesskey();
     $aformexport = new export_form(); // Form instance.
     if ($formdata = $aformexport->get_data()) {
         $categorietable = new getcatetab(); // Create object that contains all categories.

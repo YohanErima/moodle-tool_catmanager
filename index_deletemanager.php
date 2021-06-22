@@ -49,6 +49,7 @@ $stringcoursecreatorsdeleted = get_string('coursecreatorsdeleted', 'tool_catmana
 $stringnofile                = get_string('nofile', 'tool_catmanager');
 
 if (empty($idparam)) {
+    require_sesskey();
     $aformdeletesuccess = new delete_manager_form_success();
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformdeletesuccess->get_data()) { // The user has clicked in the button of download csv report changes.
@@ -239,7 +240,9 @@ if (empty($idparam)) {
             fclose($fp);
             // Report changes that you can download.
             $tabroleassign->createreportcsv($reporttab); // For futur fonctionnality.
-            header('location: index_deletemanager.php?str=yes');
+            $str = "yes";
+            $sesskey= sesskey();
+            header("location: index_deletemanager.php?str=$str&sesskey=$sesskey");
         } else { // The admin has writed a bad text.
             $aformdeletenosuccess = new delete_manager_form_no_success();
             echo $OUTPUT->header();

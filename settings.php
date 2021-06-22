@@ -37,39 +37,45 @@ if ($hassiteconfig) {
     // Upload/Edit Categories.
     // Put "Upload/Edit course categories" on the menu.
     // Course->Manage course categories->Upload/Edit course categories.
+    $action_upload = new moodle_url("$CFG->wwwroot/$CFG->admin/tool/catmanager/index_upload.php", [ 'sesskey' => sesskey()]);
     $ADMIN->add('toolcatmanager_category', new admin_externalpage('toolcatmanager_upload',
         get_string('uploadeditcoursecategories', 'tool_catmanager'),
-        "$CFG->wwwroot/$CFG->admin/tool/catmanager/index_upload.php"));
+        $action_upload));
 
     // Export Categories.
     // Course->Manage course categories->Upload/EditExport course categories.
+    $action_export = new moodle_url("$CFG->wwwroot/$CFG->admin/tool/catmanager/index_export.php", [ 'sesskey' => sesskey()]);
     $ADMIN->add('toolcatmanager_category', new admin_externalpage('toolcatmanager_export',
         get_string('exportcoursecategories', 'tool_catmanager'),
-        "$CFG->wwwroot/$CFG->admin/tool/catmanager/index_export.php"));
+        $action_export));
 
     // Delete Categories.
     // Course->Manage course categories->Upload/EditDelete course categories.
+    $action_delete = new moodle_url("$CFG->wwwroot/$CFG->admin/tool/catmanager/index_delete.php", [ 'sesskey' => sesskey()]);
     $ADMIN->add('toolcatmanager_category', new admin_externalpage('toolcatmanager_delete',
         get_string('deletecoursecategories', 'tool_catmanager'),
-        "$CFG->wwwroot/$CFG->admin/tool/catmanager/index_delete.php"));
+        $action_delete));
 
     // Categories Manager .
 
     // Upload/Edit Categories Manager.
     // Course->Manage course categories->Upload/Edit course categories.
+    $action_upload_manager = new moodle_url("$CFG->wwwroot/$CFG->admin/tool/catmanager/index_uploadmanager.php", ['sesskey' => sesskey()]);
     $ADMIN->add('toolcatmanager_manager', new admin_externalpage('toolcatmanager_uploadmanager',
         get_string('uploadeditmanager', 'tool_catmanager'),
-        "$CFG->wwwroot/$CFG->admin/tool/catmanager/index_uploadmanager.php"));
+        $action_upload_manager));
 
     // Export Categories Manager.
     // Course->Manage course categories->Upload/EditExport course categories.
+    $action_export_manager = new moodle_url("$CFG->wwwroot/$CFG->admin/tool/catmanager/index_exportmanager.php", [ 'sesskey' => sesskey()]);
     $ADMIN->add('toolcatmanager_manager', new admin_externalpage('toolcatmanager_exportmanager',
         get_string('exportmanager', 'tool_catmanager'),
-        "$CFG->wwwroot/$CFG->admin/tool/catmanager/index_exportmanager.php"));
+        $action_export_manager));
 
     // Delete Categories Manager.
     // Course->Manage course categories->Upload/EditDelete course categories.
+    $action_delete_cat = new moodle_url("$CFG->wwwroot/$CFG->admin/tool/catmanager/index_deletemanager.php", ['sesskey' => sesskey()]);
     $ADMIN->add('toolcatmanager_manager', new admin_externalpage('toolcatmanager_deletemanager',
         get_string('deletemanager', 'tool_catmanager'),
-        "$CFG->wwwroot/$CFG->admin/tool/catmanager/index_deletemanager.php"));
+        $action_delete_cat));
 }

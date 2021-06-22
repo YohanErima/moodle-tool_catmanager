@@ -33,6 +33,7 @@ admin_externalpage_setup('toolcatmanager_exportmanager'); // The admin page.
 require_capability('moodle/category:manage', context_system::instance()); // Manager role.
 
 if (empty($id)) {
+    require_sesskey();
     $aformexport = new export_manager_form(); // Instance of form.
     if ($formdata = $aformexport->get_data()) {
         $roleassigntable = new getroleassigntab(); // Create role assign table.

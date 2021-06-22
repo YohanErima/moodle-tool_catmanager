@@ -49,6 +49,7 @@ $stringrecallidnumberemptydelete = get_string('recallidnumberemptydelete', 'tool
 
 
 if (empty($idparam)) {
+    require_sesskey();
     $aformdeletesuccess = new delete_form_success();
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformdeletesuccess->get_data()) { // The user has clicked in the button of download csv report changes.
@@ -245,7 +246,9 @@ if (empty($idparam)) {
             fclose($fp);
             // Report changes that you can download.
             $catetab->createreportcsv($reporttab); // For futur fonctionnality.
-            header('location: index_delete.php?str=yes');
+            $str='yes';
+            $sesskey = sesskey();
+            header("location: index_delete.php?str=$str&sesskey=$sesskey");
         } else { // We did not delete and display to the user that the text is wrong.
             $aformdeletenosuccess = new delete_form_no_success();
             echo $OUTPUT->header();

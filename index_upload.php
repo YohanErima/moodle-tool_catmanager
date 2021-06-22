@@ -49,6 +49,7 @@ $stringrecallidnumberemptycreate = get_string('recallidnumberemptycreate', 'tool
 $stringnamerequired              = get_string('namerequired', 'tool_catmanager');
 
 if (empty($idparam)) {
+    require_sesskey();
     $aformuploadsuccess = new upload_form_sucess();
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformuploadsuccess->get_data()) { // The user has clicked in the button of download csv report changes.
@@ -289,7 +290,9 @@ if (empty($idparam)) {
         fclose($fp);
         // Report changes that you can download.
         $catetab->createreportcsv($reporttab); // For futur fonctionnality.
-        header('location: index_upload.php?str=yes');
+        $str='yes';
+        $sesskey = sesskey();
+        header("location: index_upload.php?str=$str&sesskey=$sesskey");
     } else {
         echo $OUTPUT->header();
         echo $OUTPUT->heading_with_help(get_string('uploadeditcoursecategories', 'tool_catmanager'),
