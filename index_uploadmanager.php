@@ -239,7 +239,7 @@ if (empty($idparam)) {
         fclose($fp);
         // Report changes that you can download.
         $tabroleassign->createreportcsv($reporttab); // For futur fonctionnality.
-        $str='yes';
+        $str = 'yes';
         $sesskey = sesskey();
         header("location: index_uploadmanager.php?str=$str&sesskey=$sesskey");
     } else {

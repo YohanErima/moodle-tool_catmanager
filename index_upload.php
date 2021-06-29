@@ -290,7 +290,7 @@ if (empty($idparam)) {
         fclose($fp);
         // Report changes that you can download.
         $catetab->createreportcsv($reporttab); // For futur fonctionnality.
-        $str='yes';
+        $str = 'yes';
         $sesskey = sesskey();
         header("location: index_upload.php?str=$str&sesskey=$sesskey");
     } else {

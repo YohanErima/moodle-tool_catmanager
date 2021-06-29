@@ -241,7 +241,7 @@ if (empty($idparam)) {
             // Report changes that you can download.
             $tabroleassign->createreportcsv($reporttab); // For futur fonctionnality.
             $str = "yes";
-            $sesskey= sesskey();
+            $sesskey = sesskey();
             header("location: index_deletemanager.php?str=$str&sesskey=$sesskey");
         } else { // The admin has writed a bad text.
             $aformdeletenosuccess = new delete_manager_form_no_success();
