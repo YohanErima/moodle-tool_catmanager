@@ -25,8 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version   = 2019052000; // Plugin version.
-$plugin->release   = 2019052000; // Release.
+$plugin->version   = 2021070500; // Plugin version.
+$plugin->release   = 2021070500; // Release.
 $plugin->requires  = 2014051200;  // Moodle 2.7.0.
 $plugin->component = 'tool_catmanager'; // Plugin name.
 $plugin->maturity  = MATURITY_BETA;// Beta, we need more feedback to a final version.
