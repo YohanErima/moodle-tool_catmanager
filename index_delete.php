@@ -29,6 +29,7 @@ require_once($CFG->libdir . '/formslib.php');
 require_once('./get.php');
 require_once('coursecategory_form.php'); // Form.
 global $DB;
+global $SESSION;
 
 $idparam = optional_param('idparam', '', PARAM_INT);
 require_login(); // A login is require.
@@ -54,12 +55,17 @@ if (empty($idparam)) {
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformdeletesuccess->get_data()) { // The user has clicked in the button of download csv report changes.
         if (isset($formreturn->downloadbutton)) {
-            $csvfile = sys_get_temp_dir().'/reportcsv.csv';
-            if (file_exists($csvfile)) {
+            if (isset($SESSION->vartable)) {
+                $fp = fopen(sys_get_temp_dir()."/reportcsv.csv","w");
+                foreach ($SESSION->vartable as $line) {
+                    fputcsv($fp, $line,';');
+                }
+                readfile(sys_get_temp_dir()."/reportcsv.csv");
+                fclose($fp);
+
                 header('content-type: text/csv; charset=utf-8');
-                header('Content-Disposition: attachment; filename="' . basename($csvfile) . '"');
-                readfile($csvfile);
-                unlink($csvfile);
+                header('Content-Disposition: attachment; filename="reportcsv.csv"');
+                unlink(sys_get_temp_dir()."/reportcsv.csv");
                 die; // Stop the script.
             }
         }
@@ -245,7 +251,7 @@ if (empty($idparam)) {
             file_put_contents(sys_get_temp_dir().'/report.txt', $megastring);
             fclose($fp);
             // Report changes that you can download.
-            $catetab->createreportcsv($reporttab); // For futur fonctionnality.
+            $SESSION->vartable = $reporttab;
             $str = 'yes';
             $sesskey = sesskey();
             header("location: index_delete.php?str=$str&sesskey=$sesskey");
