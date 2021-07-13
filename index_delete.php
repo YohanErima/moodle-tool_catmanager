@@ -56,9 +56,9 @@ if (empty($idparam)) {
     if ($formreturn = $aformdeletesuccess->get_data()) { // The user has clicked in the button of download csv report changes.
         if (isset($formreturn->downloadbutton)) {
             if (isset($SESSION->vartable)) {
-                $fp = fopen(sys_get_temp_dir()."/reportcsv.csv","w");
+                $fp = fopen(sys_get_temp_dir()."/reportcsv.csv", "w");
                 foreach ($SESSION->vartable as $line) {
-                    fputcsv($fp, $line,';');
+                    fputcsv($fp, $line, ';');
                 }
                 readfile(sys_get_temp_dir()."/reportcsv.csv");
                 fclose($fp);
@@ -66,16 +66,18 @@ if (empty($idparam)) {
                 header('content-type: text/csv; charset=utf-8');
                 header('Content-Disposition: attachment; filename="reportcsv.csv"');
                 unlink(sys_get_temp_dir()."/reportcsv.csv");
+                unset($SESSION->vartable);
                 die; // Stop the script.
             }
         }
     }
-    if (isset($_GET['str'])) { // Print if the traitement is a success.
+    if (isset($SESSION->str)) { // Print if the traitement is a success.
         echo $OUTPUT->header();
         echo $OUTPUT->heading_with_help(get_string('deletecoursecategories', 'tool_catmanager'),
             'deletecoursecategories', 'tool_catmanager');
         $aformdeletesuccess->display();
         echo $OUTPUT->footer();
+        unset($SESSION->str);
         die;
     }
 
@@ -252,9 +254,9 @@ if (empty($idparam)) {
             fclose($fp);
             // Report changes that you can download.
             $SESSION->vartable = $reporttab;
-            $str = 'yes';
+            $SESSION->str = 'yes';
             $sesskey = sesskey();
-            header("location: index_delete.php?str=$str&sesskey=$sesskey");
+            header("location: index_delete.php?sesskey=$sesskey");
         } else { // We did not delete and display to the user that the text is wrong.
             $aformdeletenosuccess = new delete_form_no_success();
             echo $OUTPUT->header();

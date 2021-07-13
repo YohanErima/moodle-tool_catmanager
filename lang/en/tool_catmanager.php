@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- * Stringd for tool_catmanager
+ * Strings for tool_catmanager
  *
- * @package    tool
+ * @package    tool_catmanager
  * @subpackage catmanager
  * @copyright 2021, University of La Reunion, Person in charge:Didier Sebastien,
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>

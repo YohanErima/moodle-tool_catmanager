@@ -56,9 +56,9 @@ if (empty($idparam)) {
     if ($formreturn = $aformuploadsuccess->get_data()) { // The user has clicked in the button of download csv report changes.
         if (isset($formreturn->downloadbutton)) {
             if (isset($SESSION->vartable)) {
-                $fp = fopen(sys_get_temp_dir()."/reportcsv.csv","w");
+                $fp = fopen(sys_get_temp_dir()."/reportcsv.csv", "w");
                 foreach ($SESSION->vartable as $line) {
-                    fputcsv($fp, $line,';');
+                    fputcsv($fp, $line, ';');
                 }
                 readfile(sys_get_temp_dir()."/reportcsv.csv");
                 fclose($fp);
@@ -66,16 +66,18 @@ if (empty($idparam)) {
                 header('content-type: text/csv; charset=utf-8');
                 header('Content-Disposition: attachment; filename="reportcsv.csv"');
                 unlink(sys_get_temp_dir()."/reportcsv.csv");
+                unset($SESSION->vartable);
                 die; // Stop the script.
             }
         }
     }
-    if (isset($_GET['str'])) { // Print this form is the uploading of managers is a success.
+    if (isset($SESSION->str)) { // Print this form is the uploading of managers is a success.
         echo $OUTPUT->header();
         echo $OUTPUT->heading_with_help(get_string('uploadeditmanager', 'tool_catmanager'),
             'uploadeditmanager', 'tool_catmanager');
         $aformuploadsuccess->display();
         echo $OUTPUT->footer();
+        unset($SESSION->str);
         die;
     }
 
@@ -245,9 +247,9 @@ if (empty($idparam)) {
         fclose($fp);
         // Report changes that you can download.
         $SESSION->vartable = $reporttab;
-        $str = 'yes';
+        $SESSION->str = 'yes';
         $sesskey = sesskey();
-        header("location: index_uploadmanager.php?str=$str&sesskey=$sesskey");
+        header("location: index_uploadmanager.php?sesskey=$sesskey");
     } else {
         echo $OUTPUT->header();
         echo $OUTPUT->heading_with_help(get_string('uploadeditmanager', 'tool_catmanager'),
