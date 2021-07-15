@@ -24,7 +24,7 @@
  */
 
 
-$string['pluginname'] = 'Categories Manager';
+$string['pluginname'] = 'Categories Managers';
 
 
 // Categories.
