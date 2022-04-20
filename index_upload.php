@@ -51,7 +51,7 @@ $stringnamerequired              = get_string('namerequired', 'tool_catmanager')
 
 if (empty($idparam)) {
     require_sesskey();
-    $aformuploadsuccess = new upload_form_sucess();
+    $aformuploadsuccess = new categories_manager_upload_form_sucess();
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformuploadsuccess->get_data()) { // The user has clicked in the button of download csv report changes.
         if (isset($formreturn->downloadbutton)) {
@@ -92,7 +92,7 @@ if (empty($idparam)) {
     }
     // Upload.
 
-    $aformupload = new upload_form(); // Else you begin for process of creating.
+    $aformupload = new categories_manager_upload_form(); // Else you begin for process of creating.
     if ($formdata = $aformupload->get_data()) {
         $datatab  = array(); // Contain the content of the csv file.
         $filename = sys_get_temp_dir().'/import.csv';
@@ -140,17 +140,17 @@ if (empty($idparam)) {
         $countmodified       = 0; // Number of categories that are modified.
         $countadditionalinfo = 0; // Additional informations.
         // End of report change printed.
-        $catetab             = new getcatetab();
+        $catetab             = new categories_manager_get_categorie_tab();
         $syntaxtest          = $datatab[0];
 
-        if ($catetab->syntaxverification($syntaxtest) == 1) { // Check if the syntax is good.
+        if ($catetab->syntax_verification($syntaxtest) == 1) { // Check if the syntax is good.
             /* Begin the process of creation */
             for ($i = 1; $i < count($datatab); $i++) {
                 if (in_array($datatab[$i][0], $catetab->allidnumber) && (empty($datatab[$i][0]) == false)) {
                     // Check if the category exist and if it have a idnumber.
                     // Updating.
                     if (empty($datatab[$i][2])) { // Check if the category the category have a parent.
-                        $id                    = $catetab->getidwithidnumber($datatab[$i][0]);
+                        $id                    = $catetab->get_id_with_idnumber($datatab[$i][0]);
                         // We need the id to update the category.
                         $category              = new stdclass(); // We create a object that database can recognize.
                         $category->id          = $id;
@@ -171,9 +171,9 @@ if (empty($idparam)) {
                         }
                         unset($category);
                     } else {
-                        $currentcattab = new getcatetab(); // The current table.
-                        $id            = $currentcattab->getidwithidnumber($datatab[$i][0]);
-                        $idp           = $currentcattab->getidwithidnumber($datatab[$i][2]); // Get the parent id.
+                        $currentcattab = new categories_manager_get_categorie_tab(); // The current table.
+                        $id            = $currentcattab->get_id_with_idnumber($datatab[$i][0]);
+                        $idp           = $currentcattab->get_id_with_idnumber($datatab[$i][2]); // Get the parent id.
                         if (!isset($idp)) { // Check if the parent exist.
                             $error .= $datatab[$i][0] . ';' . $datatab[$i][1] . ' ' . $stringinvalidparent . ' ('
                                 . $stringline . ' ' . ($i + 1) . ')</br>' . $stringtreatementstop . '</br>';
@@ -227,8 +227,8 @@ if (empty($idparam)) {
                         }
                         unset($category);
                     } else {
-                        $currentcattab = new getcatetab(); // The current table.
-                        $idp           = $currentcattab->getidwithidnumber($datatab[$i][2]);
+                        $currentcattab = new categories_manager_get_categorie_tab(); // The current table.
+                        $idp           = $currentcattab->get_id_with_idnumber($datatab[$i][2]);
                         if (!isset($idp)) {
                             $error .= $datatab[$i][0] . ';' . $datatab[$i][1] . ' ' . $stringinvalidparent
                                 . ' (' . $stringline . ' ' . ($i + 1) . ')</br>' . $stringtreatementstop . '</br>';

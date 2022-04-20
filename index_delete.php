@@ -51,7 +51,7 @@ $stringrecallidnumberemptydelete = get_string('recallidnumberemptydelete', 'tool
 
 if (empty($idparam)) {
     require_sesskey();
-    $aformdeletesuccess = new delete_form_success();
+    $aformdeletesuccess = new categories_manager_delete_form_success();
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformdeletesuccess->get_data()) { // The user has clicked in the button of download csv report changes.
         if (isset($formreturn->downloadbutton)) {
@@ -91,7 +91,7 @@ if (empty($idparam)) {
         unlink(sys_get_temp_dir().'/report.txt');
     }
 
-    $aformdelete = new delete_form(); // Form instance.
+    $aformdelete = new categories_manager_delete_form(); // Form instance.
     if ($formdata = $aformdelete->get_data()) {
         if (strcmp($formdata->deletetext, 'DELETE') == 0) {
             // If the admin write the good text "DELETE", the delete traitement can begin.
@@ -122,8 +122,8 @@ if (empty($idparam)) {
             file_put_contents($filename, $content);
             fclose($fp);
             $datatab = array(); // Content of the csv.
-            $catetab = new getcatetab(); // All categories.
-            $allid = $catetab->getallid(); // All categories ids.
+            $catetab = new categories_manager_get_categorie_tab(); // All categories.
+            $allid = $catetab->get_all_id(); // All categories ids.
             // We recuperates content.
             if (($handle = fopen($filename, "r")) !== false) {
                 while (($data = fgetcsv($handle, 1000, ";")) !== false) {
@@ -136,7 +136,7 @@ if (empty($idparam)) {
             $countadditionalinfo = 0; // Number of categories that are deleted.
             if ($datatab) {
                 $syntaxtest = $datatab[0];
-                if ($catetab->deletesyntaxverification($syntaxtest) == 1) { // Check if the syntax is good.
+                if ($catetab->delete_syntax_verification($syntaxtest) == 1) { // Check if the syntax is good.
                     /* Begin the process of delete */
                     for ($i = 1; $i < count($datatab); $i++) {
                         if (empty($datatab[$i][0])) {
@@ -144,27 +144,27 @@ if (empty($idparam)) {
                             $addtionalinfo .= ' (' . $stringline . ' ' . ($i + 1) . ') ' . $datatab[$i][1] . '</br>';
                             $countadditionalinfo++;
                         } else {
-                            $id    = $catetab->getidwithidnumber($datatab[$i][0]);
-                            $child = $catetab->haschild($id); // For print all sons that we delete with the traitement.
+                            $id    = $catetab->get_id_with_idnumber($datatab[$i][0]);
+                            $child = $catetab->has_child($id); // For print all sons that we delete with the traitement.
                             // Only delete the categoy.
                             if (empty($child)) {
                                 // If the category have not sons, we simply delete it.
-                                $currentcattab = new getcatetab(); // Current categories tables.
-                                $currentallid  = $currentcattab->getallid(); // Current categories id tables.
+                                $currentcattab = new categories_manager_get_categorie_tab(); // Current categories tables.
+                                $currentallid  = $currentcattab->get_all_id(); // Current categories id tables.
                                 if (in_array($id, $currentallid)) { // Check if the category exist to avoid system error.
                                     $deletecat = core_course_category::get($id, MUST_EXIST);
                                     // Make sure that we can delete and the current category is not the last category.
-                                    if (($deletecat->can_delete_full()) && ($catetab->counttable() > 1)) {
+                                    if (($deletecat->can_delete_full()) && ($catetab->count_table() > 1)) {
                                         // Check if we can delete the categories and sons, context(...).
                                         $deletecat->delete_full(false); // Delete the categories, sons, context(...).
-                                        $deleted .= $catetab->getidnumberwithid($id) . ' ; '
-                                        . $catetab->getnamewithid($id) . '<br/>'; // Report.
+                                        $deleted .= $catetab->get_id_number_with_id($id) . ' ; '
+                                        . $catetab->get_name_with_id($id) . '<br/>'; // Report.
                                         $countdeleted++; // Report.
                                         array_push($reportdeleted, array(
-                                            $catetab->getidnumberwithid($id),
-                                            $catetab->getnamewithid($id)
+                                            $catetab->get_id_number_with_id($id),
+                                            $catetab->get_name_with_id($id)
                                         )); // Csv report.
-                                    } else if ($catetab->counttable() <= 1) {
+                                    } else if ($catetab->count_table() <= 1) {
                                         $error .= ' (' . $stringline . ' ' . ($i + 1) . ') '
                                             . $datatab[$i][0] . '-' . $datatab[$i][1] . ' ' . $stringleaveonecategory;
                                         $counterror++;
@@ -178,32 +178,32 @@ if (empty($idparam)) {
                                 } // End of delete only the category.
                             } else {
                                 // Delete the category and his sons.
-                                $currentcattab = new getcatetab();
-                                $currentallid  = $currentcattab->getallid();
+                                $currentcattab = new categories_manager_get_categorie_tab();
+                                $currentallid  = $currentcattab->get_all_id();
                                 if (in_array($id, $currentallid)) {
                                     $deletecat = core_course_category::get($id, MUST_EXIST);
-                                    if (($deletecat->can_delete_full()) && ($catetab->counttable() > 1)) {
+                                    if (($deletecat->can_delete_full()) && ($catetab->count_table() > 1)) {
                                         $deletecat->delete_full(false); // Delete the category and his sons.
-                                        $deleted .= $catetab->getidnumberwithid($id) . ' ; '
-                                            . $catetab->getnamewithid($id) . '<br/>'; // Report.
+                                        $deleted .= $catetab->get_id_number_with_id($id) . ' ; '
+                                            . $catetab->get_name_with_id($id) . '<br/>'; // Report.
                                         $countdeleted++; // Report.
                                         array_push($reportdeleted, array(
-                                            $catetab->getidnumberwithid($id),
-                                            $catetab->getnamewithid($id)
+                                            $catetab->get_id_number_with_id($id),
+                                            $catetab->get_name_with_id($id)
                                         )); // Csv report.
                                         // Report the delete of all sons.
                                         for ($j = 0; $j < count($child); $j++) {
                                             if (in_array($child[$j], $currentallid)) { // Check if the child currently exist.
-                                                $deleted .= $catetab->getidnumberwithid($child[$j]) . ' ; '
-                                                    . $catetab->getnamewithid($child[$j]) . '<br/>'; // Report.
+                                                $deleted .= $catetab->get_id_number_with_id($child[$j]) . ' ; '
+                                                    . $catetab->get_name_with_id($child[$j]) . '<br/>'; // Report.
                                                 $countdeleted++; // Report.
                                                 array_push($reportdeleted, array(
-                                                    $catetab->getidnumberwithid($child[$j]),
-                                                    $catetab->getnamewithid($child[$j])
+                                                    $catetab->get_id_number_with_id($child[$j]),
+                                                    $catetab->get_name_with_id($child[$j])
                                                 )); // Csv report.
                                             }
                                         }
-                                    } else if ($catetab->counttable() <= 1) {
+                                    } else if ($catetab->count_table() <= 1) {
                                         $error .= ' (' . $stringline . ' ' . ($i + 1) . ') ' .
                                             $datatab[$i][0] . '-' . $datatab[$i][1] . ' ' . $stringleaveonecategory;
                                         break;
@@ -258,7 +258,7 @@ if (empty($idparam)) {
             $sesskey = sesskey();
             header("location: index_delete.php?sesskey=$sesskey");
         } else { // We did not delete and display to the user that the text is wrong.
-            $aformdeletenosuccess = new delete_form_no_success();
+            $aformdeletenosuccess = new categories_manager_delete_form_no_success();
             echo $OUTPUT->header();
             echo $OUTPUT->heading_with_help(get_string('deletecoursecategories', 'tool_catmanager'),
                 'deletecoursecategories', 'tool_catmanager');

@@ -23,7 +23,7 @@
 
 defined('MOODLE_INTERNAL') || die;
 /**
- * Class user
+ * Class categories_manager_user
  *
  * We use this class to clone the user through the database
  *
@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') || die;
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class user {
+class categories_manager_user {
     /**
      * User id copy
      *
@@ -83,7 +83,7 @@ class user {
 }
 
 /**
- * Class getusertab
+ * Class categories_manager_get_user_tab
  *
  * We use this class to help the correspondence of userid and user information
  * @package    tool_catmanager
@@ -91,7 +91,7 @@ class user {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class getusertab {
+class categories_manager_get_user_tab {
     /**
      * User tab
      *
@@ -110,7 +110,7 @@ class getusertab {
         // Put all users in the table.
         foreach ($thedb as $record) {
             // One user in each line.
-            $tmptab[$counttab] = new user($record->id, $record->username, $record->firstname, $record->lastname, $record->email);
+            $tmptab[$counttab] = new categories_manager_user($record->id, $record->username, $record->firstname, $record->lastname, $record->email);
             $counttab++;
         }
         $this->tab = $tmptab; // The traitement is done, put the data in the final table.
@@ -122,7 +122,7 @@ class getusertab {
      * @param string $username
      * @return mixed
      */
-    public function getidwithusername($username) {
+    public function get_id_with_username($username) {
         $tmptab = $this->tab;
         for ($i = 0; $i < count($this->tab); $i++) {
             if (strcmp($tmptab[$i]->username, $username) == 0) {
@@ -136,7 +136,7 @@ class getusertab {
      * @param string $username
      * @return mixed
      */
-    public function getfirstnamewithusername($username) {
+    public function get_first_name_with_username($username) {
         $tmptab = $this->tab;
         for ($i = 0; $i < count($this->tab); $i++) {
             if (strcmp($tmptab[$i]->username, $username) == 0) {
@@ -150,7 +150,7 @@ class getusertab {
      * @param string $username
      * @return mixed
      */
-    public function getlastnamewithusername($username) {
+    public function get_last_name_with_username($username) {
         $tmptab = $this->tab;
         for ($i = 0; $i < count($this->tab); $i++) {
             if (strcmp($tmptab[$i]->username, $username) == 0) {
@@ -164,7 +164,7 @@ class getusertab {
      * @param int $id
      * @return mixed
      */
-    public function getusernamewithid($id) {
+    public function get_username_with_id($id) {
         $tmptab = $this->tab;
         for ($i = 0; $i < count($this->tab); $i++) {
             if (strcmp($tmptab[$i]->id, $id) == 0) {

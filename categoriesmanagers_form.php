@@ -27,7 +27,7 @@ require_once('./get.php');
 
 
 /**
- * Class upload_manager_form
+ * Class categories_manager_upload_manager_form
  *
  * upload forms with a csv file
  * @package    tool_catmanager
@@ -35,7 +35,7 @@ require_once('./get.php');
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class upload_manager_form extends moodleform {
+class categories_manager_upload_manager_form extends moodleform {
     /**
      * Form definition.
      */
@@ -50,7 +50,7 @@ class upload_manager_form extends moodleform {
 
 
 /**
- * Class upload_manager_form_sucess
+ * Class categories_manager_upload_manager_form_sucess
  *
  * the forms that is print when the upload is a success
  * @package    tool_catmanager
@@ -58,7 +58,7 @@ class upload_manager_form extends moodleform {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class upload_manager_form_sucess extends moodleform {
+class categories_manager_upload_manager_form_sucess extends moodleform {
     /**
      * Form definition.
      */
@@ -83,7 +83,7 @@ class upload_manager_form_sucess extends moodleform {
 
 
 /**
- * Class export_manager_form
+ * Class categories_manager_export_manager_form
  *
  * export form
  * @package    tool_catmanager
@@ -91,7 +91,7 @@ class upload_manager_form_sucess extends moodleform {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class export_manager_form extends moodleform {
+class categories_manager_export_manager_form extends moodleform {
     /**
      * Form definition.
      */
@@ -104,7 +104,7 @@ class export_manager_form extends moodleform {
 
 
 /**
- * Class delete_manager_form
+ * Class categories_manager_delete_manager_form
  *
  * delete form
  * @package    tool_catmanager
@@ -112,7 +112,7 @@ class export_manager_form extends moodleform {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class delete_manager_form extends moodleform {
+class categories_manager_delete_manager_form extends moodleform {
     /**
      * Form definition.
      */
@@ -137,7 +137,7 @@ class delete_manager_form extends moodleform {
 
 
 /**
- * Class delete_manager_form_success
+ * Class categories_manager_delete_manager_form_success
  *
  * notification of the delete if the admin put 'delete'
  * @package    tool_catmanager
@@ -145,7 +145,7 @@ class delete_manager_form extends moodleform {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class delete_manager_form_success extends moodleform {
+class categories_manager_delete_manager_form_success extends moodleform {
     /**
      * Form definition.
      */
@@ -169,7 +169,7 @@ class delete_manager_form_success extends moodleform {
 
 
 /**
- * Class delete_manager_form_no_success
+ * Class categories_manager_delete_manager_form_no_success
  *
  * notification of the delete if the admin put another text
  * @package    tool_catmanager

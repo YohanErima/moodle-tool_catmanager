@@ -51,7 +51,7 @@ $stringcoursecreatorsadded = get_string('coursecreatorsadded', 'tool_catmanager'
 
 if (empty($idparam)) {
     require_sesskey();
-    $aformuploadsuccess = new upload_manager_form_sucess();
+    $aformuploadsuccess = new categories_manager_upload_manager_form_sucess();
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformuploadsuccess->get_data()) { // The user has clicked in the button of download csv report changes.
         if (isset($formreturn->downloadbutton)) {
@@ -92,7 +92,7 @@ if (empty($idparam)) {
     }
 
     // Upload.
-    $aformupload = new upload_manager_form(); // Form instance.
+    $aformupload = new categories_manager_upload_manager_form(); // Form instance.
     if ($formdata = $aformupload->get_data()) {
         // Contain the csv report, For futur fonctionnality (download a report changes).
         $reporttab           = array(
@@ -126,9 +126,9 @@ if (empty($idparam)) {
         file_put_contents($filename, $content);
         fclose($fp);
         $datatab       = array(); // Content of the csv.
-        $tabcat        = new getcatetab; // All categories.
-        $tabuser       = new getusertab(); // All users.
-        $tabroleassign = new getroleassigntab(); // All assignments.
+        $tabcat        = new categories_manager_get_categorie_tab(); // All categories.
+        $tabuser       = new categories_manager_getusertab(); // All users.
+        $tabroleassign = new categories_manager_get_role_assign_tab(); // All assignments.
         // Get the content.
         if (($handle = fopen($filename, "r")) !== false) {
             while (($data = fgetcsv($handle, 1000, ";")) !== false) {
@@ -142,18 +142,18 @@ if (empty($idparam)) {
         $countcoursecreator = 0; // Number of coursecreator that the csv file has added.
         $errordetection     = false; // Error detection to notifie the admin that there are error(s) at a line.
         $syntaxtest         = $datatab[0];
-        if ($tabroleassign->syntaxverification($syntaxtest) == 1) { // Check if the syntax is good.
+        if ($tabroleassign->syntax_verification($syntaxtest) == 1) { // Check if the syntax is good.
             // Begin of the uploading traitement.
             for ($i = 1; $i < count($datatab); $i++) {
-                $currenttabroleassign = new getroleassigntab(); // Current table assignments.
+                $currenttabroleassign = new categories_manager_get_role_assign_tab(); // Current table assignments.
                 $errordetection       = false; // Reset errordetection.
                 // ------Get the indipensable value-------.
                 $idnumber             = $datatab[$i][0]; // Idnumber of the category.
                 $username             = $datatab[$i][1]; // Username of the user, one-off.
                 $role                 = $datatab[$i][2]; // Role.
-                $roleid               = $tabroleassign->getroleidwithrole($role); // Student is the default value.
-                $catid                = $tabcat->getidwithidnumber($idnumber); // We need the id to found the contextid.
-                $userid               = $tabuser->getidwithusername($username); // Same.
+                $roleid               = $tabroleassign->get_role_id_with_role($role); // Student is the default value.
+                $catid                = $tabcat->get_id_with_idnumber($idnumber); // We need the id to found the contextid.
+                $userid               = $tabuser->get_id_with_username($username); // Same.
                 if ($catid && $userid) {
                     $context                = context_coursecat::instance($catid); // We need the context to have the contextid.
                     $contextid              = $context->id; // The value that we want to insert in the assignments table.
@@ -162,16 +162,16 @@ if (empty($idparam)) {
                     $roleassign->contextid = $contextid;
                     $roleassign->userid    = $userid;
                     $roleassign->roleid    = $roleid; // 1 is the manager role.
-                    $roleassignid         = $currenttabroleassign->getidwithcontextanduserandrole($contextid, $userid, $roleid);
+                    $roleassignid         = $currenttabroleassign->get_id_with_context_and_user_and_role($contextid, $userid, $roleid);
                     // Check if the role exist.
                     if (!$roleassignid) {
                         // Insert the assignments into the database.
                         $DB->insert_record('role_assignments', $roleassign);
                         // Print the list of managers and coursecreators.
                         if ($roleid == 1) { // Manager role.
-                            $manager .= $tabuser->getfirstnamewithusername($username) . ' '
-                                . $tabuser->getlastnamewithusername($username) . ' - '
-                                . $tabcat->getnamewithidnumber($idnumber) . '</br>';
+                            $manager .= $tabuser->get_first_name_with_username($username) . ' '
+                                . $tabuser->get_last_name_with_username($username) . ' - '
+                                . $tabcat->get_name_with_idnumber($idnumber) . '</br>';
                             $countmanager++;
                             array_push($reportmanager, array(
                                 $idnumber,
@@ -179,9 +179,9 @@ if (empty($idparam)) {
                                 $role
                             ));
                         } else { // Role.
-                            $coursecreator .= $tabuser->getfirstnamewithusername($username) . ' '
-                                . $tabuser->getlastnamewithusername($username) . ' - '
-                                . $tabcat->getnamewithidnumber($idnumber) . '</br>';
+                            $coursecreator .= $tabuser->get_first_name_with_username($username) . ' '
+                                . $tabuser->get_last_name_with_username($username) . ' - '
+                                . $tabcat->get_name_with_idnumber($idnumber) . '</br>';
                             $countcoursecreator++;
                             array_push($reportcoursecreator, array(
                                 $idnumber,

@@ -25,7 +25,7 @@ require_once('./get.php');
 require_once('./getuser.php');
 
 /**
- * Class roleassign
+ * Class categories_manager_roleassign
  *
  * Roleassign object to clone a role assignement trough the database
  * @package    tool_catmanager
@@ -33,7 +33,7 @@ require_once('./getuser.php');
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class roleassign {
+class categories_manager_roleassign {
     /**
      * Id assign copy
      *
@@ -84,7 +84,7 @@ class roleassign {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class getroleassigntab {
+class categories_manager_get_role_assign_tab {
     /**
      * tab
      *
@@ -104,7 +104,7 @@ class getroleassigntab {
         )); // 1 is the manager roleid.
         $counttab    = 0;
         foreach ($themanagers as $record) {
-            $tmptab[$counttab] = new roleassign($record->id, $record->roleid, $record->contextid, $record->userid);
+            $tmptab[$counttab] = new categories_manager_roleassign($record->id, $record->roleid, $record->contextid, $record->userid);
             $counttab++;
         }
         $themanagers->close();
@@ -113,7 +113,7 @@ class getroleassigntab {
             'roleid' => 2
         ));
         foreach ($thecoursecreators as $record) {
-            $tmptab[$counttab] = new roleassign($record->id, $record->roleid, $record->contextid, $record->userid);
+            $tmptab[$counttab] = new categories_manager_roleassign($record->id, $record->roleid, $record->contextid, $record->userid);
             $counttab++;
         }
         $thecoursecreators->close();
@@ -127,7 +127,7 @@ class getroleassigntab {
      * @param string $roleid
      * @return mixed
      */
-    public function getidwithcontextanduserandrole($contextid, $userid, $roleid) {
+    public function get_id_with_context_and_user_and_role($contextid, $userid, $roleid) {
         $tmptab = $this->tab;
         for ($i = 0; $i < count($this->tab); $i++) {
             if ((strcmp($tmptab[$i]->contextid, $contextid) == 0) && (strcmp($tmptab[$i]->userid, $userid) == 0)
@@ -142,7 +142,7 @@ class getroleassigntab {
      * @param string $role
      * @return int
      */
-    public function getroleidwithrole($role) {
+    public function get_role_id_with_role($role) {
         $roleid = 0;
         if (strcmp($role, 'manager') == 0) {
             $roleid = 1;
@@ -157,11 +157,11 @@ class getroleassigntab {
      * Return table like idnumber;user;role for the csv
      * @return array
      */
-    public function getarray() {
+    public function get_array() {
         $tmptab       = $this->tab;
-        $catetab      = new getcatetab();
-        $usertab      = new getusertab();
-        $contextarray = $catetab->getarraycontext();
+        $catetab      = new categories_manager_get_categorie_tab();
+        $usertab      = new categories_manager_get_user_tab();
+        $contextarray = $catetab->get_array_context();
         $array        = array(
             array(
                 'idNumber',
@@ -171,7 +171,7 @@ class getroleassigntab {
         );
         for ($i = 0; $i < count($tmptab); $i++) {
             // Username.
-            $username = $usertab->getusernamewithid($tmptab[$i]->userid);
+            $username = $usertab->get_user_name_with_id($tmptab[$i]->userid);
             // Role.
             $roleid   = $tmptab[$i]->roleid;
             $role     = '';
@@ -189,7 +189,7 @@ class getroleassigntab {
                     $catid = $contextarray[$j][0];
                 }
             }
-            $idnumber = $catetab->getidnumberwithid($catid);
+            $idnumber = $catetab->get_id_number_with_id($catid);
             // Put the line in the table.
             $tmparray = array(
                 $idnumber,
@@ -205,7 +205,7 @@ class getroleassigntab {
      * Return the same table but in a string version
      * @return array
      */
-    public function getarraystring() {
+    public function get_array_string() {
         $tmptab      = $this->tab;
         $arraystring = array();
         for ($i = 0; $i < count($tmptab); $i++) {
@@ -219,7 +219,7 @@ class getroleassigntab {
      * Return the assign table
      * @return array
      */
-    public function gettable() {
+    public function get_table() {
         $tmptab = $this->tab;
         $array  = array();
         for ($i = 0; $i < count($tmptab); $i++) {
@@ -251,8 +251,8 @@ class getroleassigntab {
      * Create the csv file (for export)
      * @param string $name
      */
-    public function createcsv($name) {
-        $list = $this->utf8_converter($this->getarray());
+    public function create_csv($name) {
+        $list = $this->utf8_converter($this->get_array());
         $fp   = fopen(sys_get_temp_dir().'/' . $name . '.csv', 'w');
         foreach ($list as $fields) {
             fputcsv($fp, $fields, ";");
@@ -263,9 +263,9 @@ class getroleassigntab {
     /**
      *  Create and download the csv file ( for export)
      */
-    public function downloadexportcsv() {
+    public function download_export_csv() {
 
-        $list = $this->utf8_converter($this->getarray());
+        $list = $this->utf8_converter($this->get_array());
         $out = fopen('php://output', 'w');
 
         foreach ($list as $fields) {
@@ -284,7 +284,7 @@ class getroleassigntab {
      * @param array $datatab
      * @return int
      */
-    public function syntaxverification($datatab) {
+    public function syntax_verification($datatab) {
         $result = 1;
         if (count($datatab) == 3) {
             $syntaxidnumber = trim($datatab[0]); // Drop space.
@@ -304,7 +304,7 @@ class getroleassigntab {
      * Csv report for future fonctionnality
      * @param array $data
      */
-    public function createreportcsv($data) {
+    public function create_report_csv($data) {
         $list = $this->utf8_converter($data);
         $fp   = fopen(sys_get_temp_dir().'/reportcsv.csv', 'w');
         foreach ($list as $fields) {

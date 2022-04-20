@@ -35,10 +35,10 @@ require_capability('moodle/category:manage', context_system::instance()); // Man
 
 if (empty($idparam)) {
     require_sesskey();
-    $aformexport = new export_form(); // Form instance.
+    $aformexport = new categories_manager_export_form(); // Form instance.
     if ($formdata = $aformexport->get_data()) {
-        $categorietable = new getcatetab(); // Create object that contains all categories.
-        $categorietable->downloadexportcsv();
+        $categorietable = new categories_manager_get_categorie_tab(); // Create object that contains all categories.
+        $categorietable->download_export_csv();
     } else {
         echo $OUTPUT->header();
         echo $OUTPUT->heading_with_help(get_string('exportcoursecategories', 'tool_catmanager'),

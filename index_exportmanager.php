@@ -34,10 +34,10 @@ require_capability('moodle/category:manage', context_system::instance()); // Man
 
 if (empty($id)) {
     require_sesskey();
-    $aformexport = new export_manager_form(); // Instance of form.
+    $aformexport = new categories_manager_export_manager_form(); // Instance of form.
     if ($formdata = $aformexport->get_data()) {
-        $roleassigntable = new getroleassigntab(); // Create role assign table.
-        $roleassigntable->downloadexportcsv(); // Download the csv file.
+        $roleassigntable = new categories_manager_get_role_assign_tab(); // Create role assign table.
+        $roleassigntable->download_export_csv(); // Download the csv file.
     } else {
         echo $OUTPUT->header();
         echo $OUTPUT->heading_with_help(get_string('exportmanager', 'tool_catmanager'),

@@ -25,7 +25,7 @@ require_once($CFG->libdir . '/formslib.php');
 require_once('./get.php');
 
 /**
- * Class upload_form
+ * Class categories_manager_upload_form
  *
  * upload form
  * @package    tool_catmanager
@@ -33,7 +33,7 @@ require_once('./get.php');
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class upload_form extends moodleform {
+class categories_manager_upload_form extends moodleform {
     /**
      * Form definition.
      */
@@ -48,7 +48,7 @@ class upload_form extends moodleform {
 }
 
 /**
- * Class upload_form_sucess
+ * Class categories_manager_upload_form_sucess
  *
  * the forms that is print when the upload is a success
  * @package    tool_catmanager
@@ -56,7 +56,7 @@ class upload_form extends moodleform {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class upload_form_sucess extends moodleform {
+class categories_manager_upload_form_sucess extends moodleform {
     /**
      * Form definition.
      */
@@ -80,7 +80,7 @@ class upload_form_sucess extends moodleform {
 }
 
 /**
- * Class upload_form_sucess_return
+ * Class categories_manager_upload_form_sucess_return
  *
  * the forms that is print when users download the csv file
  * @package    tool_catmanager
@@ -88,7 +88,7 @@ class upload_form_sucess extends moodleform {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class upload_form_sucess_return extends moodleform {
+class categories_manager_upload_form_sucess_return extends moodleform {
     /**
      * Form definition.
      */
@@ -102,7 +102,7 @@ class upload_form_sucess_return extends moodleform {
 }
 
 /**
- * Class export_form
+ * Class categories_manager_export_form
  *
  * export form
  * @package    tool_catmanager
@@ -110,7 +110,7 @@ class upload_form_sucess_return extends moodleform {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class export_form extends moodleform {
+class categories_manager_export_form extends moodleform {
     /**
      * Form definition.
      */
@@ -122,7 +122,7 @@ class export_form extends moodleform {
 }
 
 /**
- * Class delete_form
+ * Class categories_manager_delete_form
  *
  * delete forms
  * @package    tool_catmanager
@@ -130,7 +130,7 @@ class export_form extends moodleform {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class delete_form extends moodleform {
+class categories_manager_delete_form extends moodleform {
     /**
      * Form definition.
      */
@@ -155,7 +155,7 @@ class delete_form extends moodleform {
 }
 
 /**
- * Class delete_form_success
+ * Class categories_manager_delete_form_success
  *
  * notification of the delete if the admin put 'delete'
  * @package    tool_catmanager
@@ -163,7 +163,7 @@ class delete_form extends moodleform {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class delete_form_success extends moodleform {
+class categories_manager_delete_form_success extends moodleform {
     /**
      * Form definition.
      */
@@ -186,7 +186,7 @@ class delete_form_success extends moodleform {
 }
 
 /**
- * Class delete_form_no_success
+ * Class categories_manager_delete_form_no_success
  *
  * notification of the delete if the admin put another text
  * @package    tool_catmanager
@@ -194,7 +194,7 @@ class delete_form_success extends moodleform {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class delete_form_no_success extends moodleform {
+class categories_manager_delete_form_no_success extends moodleform {
     /**
      * Form definition.
      */

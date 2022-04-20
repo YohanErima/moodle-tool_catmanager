@@ -51,7 +51,7 @@ $stringnofile                = get_string('nofile', 'tool_catmanager');
 
 if (empty($idparam)) {
     require_sesskey();
-    $aformdeletesuccess = new delete_manager_form_success();
+    $aformdeletesuccess = new categories_manager_delete_manager_form_success();
     // Check if the user have upload a file and if we need to display a report.
     if ($formreturn = $aformdeletesuccess->get_data()) { // The user has clicked in the button of download csv report changes.
         if (isset($formreturn->downloadbutton)) {
@@ -91,7 +91,7 @@ if (empty($idparam)) {
         unlink(sys_get_temp_dir().'/report.txt');
     }
 
-    $aformdelete = new delete_manager_form(); // Instance of form.
+    $aformdelete = new categories_manager_delete_manager_form(); // Instance of form.
     if ($formdata = $aformdelete->get_data()) {
         if (strcmp($formdata->deletetext, 'DELETE') == 0) {
             // If the admin write the good text "DELETE", the delete traitement can begin.
@@ -128,9 +128,9 @@ if (empty($idparam)) {
             file_put_contents($filename, $content);
             fclose($fp);
             $datatab       = array(); // Content of the csv.
-            $tabcat        = new getcatetab; // All categories.
-            $tabuser       = new getusertab(); // All users.
-            $tabroleassign = new getroleassigntab(); // All assignments.
+            $tabcat        = new categories_manager_get_categorie_tab(); // All categories.
+            $tabuser       = new categories_manager_getusertab(); // All users.
+            $tabroleassign = new categories_manager_get_role_assign_tab(); // All assignments.
             // Get the content.
             if (($handle = fopen($filename, "r")) !== false) {
                 while (($data = fgetcsv($handle, 1000, ";")) !== false) {
@@ -145,41 +145,41 @@ if (empty($idparam)) {
             $errordetection     = false; // Error detection to notifie the admin that there are error(s) at a line.
             if ($datatab) {
                 $syntaxtest = $datatab[0];
-                if ($tabroleassign->syntaxverification($syntaxtest) == 1) { // Check if the syntax is good.
+                if ($tabroleassign->syntax_verification($syntaxtest) == 1) { // Check if the syntax is good.
                     /* Begin of the delete traitement */
                     for ($i = 1; $i < count($datatab); $i++) {
-                        $currenttabroleassign = new getroleassigntab(); // Current table assignments.
+                        $currenttabroleassign = new categories_manager_get_role_assign_tab(); // Current table assignments.
                         $errordetection       = false; // Reset errordetection.
                         // Get the indipensable value.
                         $idnumber             = $datatab[$i][0]; // Idnumber of the category.
                         $username             = $datatab[$i][1]; // Username of the user, one-off.
                         $role                 = $datatab[$i][2]; // Role.
-                        $roleid               = $tabroleassign->getroleidwithrole($role); // Student is the default value.
-                        $catid                = $tabcat->getidwithidnumber($idnumber); // We need the id to found the contextid.
-                        $userid               = $tabuser->getidwithusername($username); // Same.
+                        $roleid               = $tabroleassign->get_role_id_with_role($role); // Student is the default value.
+                        $catid                = $tabcat->get_id_with_idnumber($idnumber); // We need the id to found the contextid.
+                        $userid               = $tabuser->get_id_with_username($username); // Same.
                         // Adding the role.
                         if ($catid && $userid) {
                             $context        = context_coursecat::instance($catid); // We need the context to have the contextid.
                             $contextid      = $context->id; // The value that we want to insert in the assignments table.
-                            $roleassignid = $currenttabroleassign->getidwithcontextanduserandrole($contextid, $userid, $roleid);
+                            $roleassignid = $currenttabroleassign->get_id_with_context_and_user_and_role($contextid, $userid, $roleid);
                             if ($roleassignid) {
                                 // Delete the assignments into the database.
                                 $DB->delete_records('role_assignments', array(
                                     'id' => $roleassignid
                                 ));
                                 if ($roleid == 1) {
-                                    $manager .= $tabuser->getfirstnamewithusername($username) . ' '
-                                        . $tabuser->getlastnamewithusername($username) . ' - '
-                                        . $tabcat->getnamewithidnumber($idnumber) . '</br>';
+                                    $manager .= $tabuser->gget_first_name_with_username($username) . ' '
+                                        . $tabuser->get_last_name_with_username($username) . ' - '
+                                        . $tabcat->get_name_with_idnumber($idnumber) . '</br>';
                                     $countmanager++;
                                     array_push($reportmanager, array(
                                         $idnumber,
                                         $username
                                     ));
                                 } else {
-                                    $coursecreator .= $tabuser->getfirstnamewithusername($username) . ' '
-                                        . $tabuser->getlastnamewithusername($username) . ' - '
-                                        . $tabcat->getnamewithidnumber($idnumber) . '</br>';
+                                    $coursecreator .= $tabuser->get_first_name_with_username($username) . ' '
+                                        . $tabuser->get_last_name_with_username($username) . ' - '
+                                        . $tabcat->get_name_with_idnumber($idnumber) . '</br>';
                                     $countcoursecreator++;
                                     array_push($reportcoursecreator, array(
                                         $idnumber,
@@ -252,7 +252,7 @@ if (empty($idparam)) {
             $sesskey = sesskey();
             header("location: index_deletemanager.php?sesskey=$sesskey");
         } else { // The admin has writed a bad text.
-            $aformdeletenosuccess = new delete_manager_form_no_success();
+            $aformdeletenosuccess = new categories_manager_delete_manager_form_no_success();
             echo $OUTPUT->header();
             echo $OUTPUT->heading_with_help(get_string('deletemanager', 'tool_catmanager'),
                 'deletemanager', 'tool_catmanager');

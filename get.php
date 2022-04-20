@@ -23,7 +23,7 @@
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * Class categoy
+ * Class categories_manager_categoy
  *
  * category object to clone a category trough the database
  * @package    tool_catmanager
@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') || die;
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class categoy {
+class categories_manager_categoy {
     /**
      * Category id copy.
      *
@@ -163,7 +163,7 @@ class categoy {
 
 
 /**
- * Class getcatetab
+ * Class categories_manager_get_categorie_tab
  *
  * We can do all categories traitements with this class
  * @package    tool_catmanager
@@ -171,7 +171,7 @@ class categoy {
  * Developer:Yohan Erima <yohan.erima417@gmail.com>, Nakidine Houmadi <n.houmadi@rt-iut.re>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class getcatetab {
+class categories_manager_get_categorie_tab {
 
     /**
      * Tab will contain array of categpries
@@ -208,7 +208,7 @@ class getcatetab {
         foreach ($thedb as $record) {
             // A category in each line.
             $contextid         = context_coursecat::instance($record->id);
-            $tmptab[$counttab] = new categoy($record->id, $record->name, $record->idnumber, $record->description,
+            $tmptab[$counttab] = new categories_manager_categoy($record->id, $record->name, $record->idnumber, $record->description,
                 $record->descriptionformat, $record->parent, $record->sortorder, $record->coursecount, $record->visible,
                 $record->visibleold, $record->timemodified, $record->depth, $record->path, $record->theme, $contextid);
             $counttab++;
@@ -236,7 +236,7 @@ class getcatetab {
      * @param string $idnumber
      * @return mixed
      */
-    public function getidwithidnumber($idnumber) {
+    public function get_id_with_idnumber($idnumber) {
         $tmptab = $this->tab;
         for ($i = 0; $i < count($this->tab); $i++) {
             if (strcmp($tmptab[$i]->idnumber, $idnumber) == 0) {
@@ -251,7 +251,7 @@ class getcatetab {
      * @param int $id
      * @return mised
      */
-    public function getidnumberwithid($id) {
+    public function get_id_number_with_id($id) {
         $tmptab = $this->tab;
         for ($i = 0; $i < count($this->tab); $i++) {
             if ($tmptab[$i]->id == $id) {
@@ -271,7 +271,7 @@ class getcatetab {
      * @param int $id
      * @return mixed
      */
-    public function getnamewithid($id) {
+    public function get_name_with_id($id) {
         $tmptab = $this->tab;
         for ($i = 0; $i < count($this->tab); $i++) {
             if ($tmptab[$i]->id == $id) {
@@ -286,7 +286,7 @@ class getcatetab {
      * @param string $idnumber
      * @return mixed
      */
-    public function getnamewithidnumber($idnumber) {
+    public function get_name_with_idnumber($idnumber) {
         $tmptab = $this->tab;
         for ($i = 0; $i < count($this->tab); $i++) {
             if (strcmp($tmptab[$i]->idnumber, $idnumber) == 0) {
@@ -300,7 +300,7 @@ class getcatetab {
      * @param int $id
      * @return mixed
      */
-    public function getparentwithid($id) {
+    public function get_parent_with_id($id) {
         $tmptab = $this->tab;
         for ($i = 0; $i < count($this->tab); $i++) {
             if ($tmptab[$i]->id == $id) {
@@ -313,7 +313,7 @@ class getcatetab {
      * Transform the table like idnumber, name, parent, description for csv format
      * @return array
      */
-    public function getarray() {
+    public function get_array() {
         $tmptab = $this->tab;
         $array  = array(
             array(
@@ -331,7 +331,7 @@ class getcatetab {
                 array_push($tmparray, $tmptab[$i]->idnumber, $tmptab[$i]->name, '', $tmptab[$i]->description);
             } else {
                 $parentid       = $tmptab[$i]->parent;
-                $parentidnumber = $this->getidnumberwithid($parentid);
+                $parentidnumber = $this->get_id_number_with_id($parentid);
                 array_push($tmparray, $tmptab[$i]->idnumber, $tmptab[$i]->name, $parentidnumber, $tmptab[$i]->description);
             }
             array_push($array, $tmparray);
@@ -343,7 +343,7 @@ class getcatetab {
      * Correspondence table for  catid and contextid
      * @return array
      */
-    public function getarraycontext() {
+    public function get_array_context() {
         $tmptab = $this->tab;
         $array  = array();
         for ($i = 0; $i < count($tmptab); $i++) {
@@ -362,7 +362,7 @@ class getcatetab {
      * Return all categories id
      * @return array
      */
-    public function getallid() {
+    public function get_all_id() {
         $tmptab = $this->tab;
         $array  = array();
         for ($i = 0; $i < count($tmptab); $i++) {
@@ -390,8 +390,8 @@ class getcatetab {
      * Create the csv file
      * @param string $name
      */
-    public function createcsv($name) {
-        $list = $this->utf8_converter($this->getarray());
+    public function create_csv($name) {
+        $list = $this->utf8_converter($this->get_array());
         $fp   = fopen(sys_get_temp_dir().'/' . $name . '.csv', 'w');
         foreach ($list as $fields) {
             fputcsv($fp, $fields, ";");
@@ -402,9 +402,9 @@ class getcatetab {
     /**
      *  Create and download the csv file ( for export)
      */
-    public function downloadexportcsv() {
+    public function download_export_csv() {
 
-        $list = $this->utf8_converter($this->getarray());
+        $list = $this->utf8_converter($this->get_array());
         $out = fopen('php://output', 'w');
 
         foreach ($list as $fields) {
@@ -422,9 +422,9 @@ class getcatetab {
      *
      * @param string $name
      */
-    public function showcsv($name) {
+    public function show_csv($name) {
         echo "<h5>csv :</h5>";
-        $list = $this->getarray();
+        $list = $this->get_array();
         $fp   = fopen($name . '.csv', 'w');
         foreach ($list as $fields) {
             $str = '';
@@ -446,7 +446,7 @@ class getcatetab {
      * @param int $id
      * @return array
      */
-    public function haschild($id) {
+    public function has_child($id) {
         $res    = array();
         $tmptab = $this->tab;
         foreach ($tmptab as $obj) {
@@ -462,7 +462,7 @@ class getcatetab {
      * @param array $datatab
      * @return int
      */
-    public function syntaxverification($datatab) {
+    public function syntax_verification($datatab) {
         $result = 1; // 1 if syntax is good, 0 else.
         if (count($datatab) == 4) {
             $syntaxidnumber    = trim($datatab[0]); // Drop space.
@@ -484,7 +484,7 @@ class getcatetab {
      * @param array $datatab
      * @return int
      */
-    public function deletesyntaxverification($datatab) {
+    public function delete_syntax_verification($datatab) {
         $result = 1; // 1 if syntax is good, 0 else.
         if (count($datatab) == 3 || (count($datatab) == 4)) {
             $syntaxidnumber    = trim($datatab[0]); // Drop space.
@@ -504,7 +504,7 @@ class getcatetab {
      * Create a csv report changes to have a track of the changes (for future fonctionnality)
      * @param array $data
      */
-    public function createreportcsv($data) {
+    public function create_report_csv($data) {
         $list = $this->utf8_converter($data);
         $fp = fopen(sys_get_temp_dir().'/reportcsv.csv', 'w');
         foreach ($list as $fields) {
@@ -516,7 +516,7 @@ class getcatetab {
     /**
      * Download csv report changes
      */
-    public function downloadreportcsv() {
+    public function download_report_csv() {
         $csvfile = sys_get_temp_dir()."/reportcsv.csv";
         if (file_exists($csvfile)) {
             header('content-type: text/csv; charset=utf-8');
@@ -527,15 +527,11 @@ class getcatetab {
         unlink($csvfile);
     }
 
-
-
-
-
     /**
      * Number of elements in the tables
      * @return int
      */
-    public function counttable() {
+    public function count_table() {
         return count($this->tab);
     }
 }
